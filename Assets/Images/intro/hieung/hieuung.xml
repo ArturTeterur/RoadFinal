@@ -1,0 +1,10 @@
+<TextureAtlas imagePath="hieuung.png">
+	<SubTexture name="1.png" x="306" y="0" width="275" height="269"/>
+	<SubTexture name="2.png" x="172" y="372" width="73" height="79"/>
+	<SubTexture name="3.png" x="86" y="372" width="86" height="108"/>
+	<SubTexture name="4.png" x="306" y="269" width="84" height="178"/>
+	<SubTexture name="5.png" x="390" y="269" width="84" height="178"/>
+	<SubTexture name="6.png" x="0" y="372" width="86" height="108"/>
+	<SubTexture name="7.png" x="474" y="269" width="73" height="79"/>
+	<SubTexture name="8.png" x="0" y="0" width="306" height="372"/>
+</TextureAtlas>

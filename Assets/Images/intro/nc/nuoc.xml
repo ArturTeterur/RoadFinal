@@ -1,0 +1,10 @@
+<TextureAtlas imagePath="nuoc.png">
+	<SubTexture name="1.png" x="729" y="0" width="729" height="634"/>
+	<SubTexture name="2.png" x="1458" y="0" width="729" height="634"/>
+	<SubTexture name="3.png" x="729" y="1268" width="729" height="634"/>
+	<SubTexture name="4.png" x="729" y="634" width="729" height="634"/>
+	<SubTexture name="5a.png" x="1458" y="634" width="729" height="634"/>
+	<SubTexture name="5b.png" x="0" y="1268" width="729" height="634"/>
+	<SubTexture name="6.png" x="0" y="634" width="729" height="634"/>
+	<SubTexture name="7.png" x="0" y="0" width="729" height="634"/>
+</TextureAtlas>

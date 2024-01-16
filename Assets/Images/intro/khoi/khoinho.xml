@@ -1,0 +1,5 @@
+<TextureAtlas imagePath="khoinho.png">
+	<SubTexture name="khoi1.png" x="0" y="0" width="79" height="358"/>
+	<SubTexture name="khoi2.png" x="218" y="0" width="78" height="347"/>
+	<SubTexture name="khoi3.png" x="109" y="0" width="79" height="356"/>
+</TextureAtlas>
