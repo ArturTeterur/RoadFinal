@@ -13,9 +13,7 @@ public class BallMovement : MonoBehaviour
     [SerializeField] bool _finished = false;
     [SerializeField] private BallMovement _targetBall;
     [SerializeField] private bool _obstacleAhead = false;
-  //  [SerializeField] private bool _finished= false;
-
-   
+ 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -23,10 +21,8 @@ public class BallMovement : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
-        
-         MoveToNextPoint();
-             
+    {        
+         MoveToNextPoint();            
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -73,7 +69,6 @@ public class BallMovement : MonoBehaviour
              else
              {
                 _rigidbody.AddForce(0, 0, -1 * speed);
-
              }
         }
     }

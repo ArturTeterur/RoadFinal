@@ -38,7 +38,6 @@ public class InterstitialAd : MonoBehaviour
     private void Open()
     {
         _soundMuteHandler.OnVideoOpened();
-
     }
 
     private void ApplicationFocusChanged(bool Focus)

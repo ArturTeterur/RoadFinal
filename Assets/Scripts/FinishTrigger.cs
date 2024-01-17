@@ -19,25 +19,15 @@ public class FinishTrigger : MonoBehaviour
     private float _currentPercent;
     private float _currentSpawnCount;
 
-
     private void Start()
     {
         if (PlayerPrefs.HasKey("_currentStars"))
         {
             _totalNumberStars = PlayerPrefs.GetInt("_currentStars");
         }
-                             
-        _spawnCount = _spawn.SpawnCount;
-        
-        _currentSpawnCount = _spawn.SpawnCount;
-    }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ballComponent))
-        {
-            Debug.Log("bam");
-        }    
+        _spawnCount = _spawn.SpawnCount;       
+        _currentSpawnCount = _spawn.SpawnCount;
     }
 
     private void Finish()
@@ -73,14 +63,11 @@ public class FinishTrigger : MonoBehaviour
         }
         Time.timeScale = 0f;
         PlayerPrefs.SetInt(_levelName, totalStars);
-
     }
 
     public void CountBalls()
     {
         _currentAmountBalls++;
-        Debug.Log(_currentAmountBalls.ToString() + " число которое посчитал финиш");
-        Debug.Log(_currentSpawnCount + " число которое пришло от спавнера");
         if (_currentSpawnCount == _currentAmountBalls)
         {
             Finish();
@@ -94,7 +81,6 @@ public class FinishTrigger : MonoBehaviour
         _currentSpawnCount--;
         if (_currentSpawnCount <= 0)
         {
-            _canvasGameOver.SetActive(true);
             Time.timeScale = 0;
         }
     }
@@ -110,7 +96,6 @@ public class FinishTrigger : MonoBehaviour
             {
                 Agava.YandexGames.Leaderboard.SetScore(LeaderboardName, _totalNumberStars);
             }
-
         }
         else
         {

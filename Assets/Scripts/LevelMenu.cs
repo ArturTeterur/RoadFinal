@@ -11,6 +11,7 @@ public class LevelMenu : MonoBehaviour
     [SerializeField] private GameObject _thirdStar;
     [SerializeField] private GameObject _closebutton;
     [SerializeField] private int _menuNumber;
+
     private void Start()
     {
         if(PlayerPrefs.HasKey(_nameLevel))
@@ -30,14 +31,13 @@ public class LevelMenu : MonoBehaviour
                     _thirdStar.SetActive(true);
                     break;
             }
-        _closebutton.SetActive(false);
+
+            _closebutton.SetActive(false);
         }
     }
 
     public void GoLevel(int numberScene)
     {
         SceneManager.LoadScene(numberScene);
-    }
-        
-   
+    }  
 }

@@ -16,7 +16,6 @@ public class WaypointPlatforms : MonoBehaviour
         }
     }
 
-
     private void OnColliderEnter(Collider collider)
     {
         if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ballComponent))

@@ -11,8 +11,6 @@ public class Language : MonoBehaviour
     [SerializeField] private LeanLocalization _leanLocalization;
     private string _language;
 
-   
-
     private void Start()
     {
         LoadLocalization();

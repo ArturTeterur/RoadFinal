@@ -17,6 +17,7 @@ public class PlatformMovement : MonoBehaviour
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
+
             if (Physics.Raycast(ray,out hit))
             {
                 TurnPlatforms clicktable = hit.transform.GetComponent<TurnPlatforms>();

@@ -28,7 +28,6 @@ public class SpawnBalls : MonoBehaviour
             int numberball = _currentNumberBall;
             ball.GetComponent<BallMovement>().GetNumberBalls(i);
             yield return new WaitForSeconds(_timeSpawn);
-
         }
     }
 }
