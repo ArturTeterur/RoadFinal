@@ -1,26 +1,33 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class TurnPlatforms : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _angles;
-    [SerializeField] private GameObject _currentAngle;
-    [SerializeField] private int _currentAngleIndex;
+    [SerializeField] private float rotationSpeed = 10f;
+    private bool isRotating = false;
+    private float _degreeRotation = 90f;
 
     public void Rotate()
     {
-        if (_currentAngleIndex == _angles.Count || _currentAngleIndex == _angles.Count - 1)
+        if (!isRotating)
         {
-                 _currentAngleIndex = 0;          
-            _angles[_currentAngleIndex].SetActive(true);
-            _angles[_angles.Count-1].SetActive(false);
+            StartCoroutine("MoveTowards");
         }
-        else
-        {           
-            _currentAngleIndex++;                   
-            _angles[_currentAngleIndex].SetActive(true);
-            _angles[_currentAngleIndex -1].SetActive(false);
-        }       
+    }
+
+    private IEnumerator MoveTowards()
+    {
+           Quaternion newRotation = transform.rotation * Quaternion.Euler(0, _degreeRotation, 0);
+           isRotating = true;
+
+           while (transform.rotation != newRotation)
+           {
+                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
+            
+                yield return null;
+           }
+           isRotating = false;
+           Debug.Log("щелк");
     }
 }

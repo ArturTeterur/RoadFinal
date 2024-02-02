@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UIElements;
 
 public class PlatformMovement : MonoBehaviour
 {
@@ -20,8 +20,11 @@ public class PlatformMovement : MonoBehaviour
 
             if (Physics.Raycast(ray,out hit))
             {
-                TurnPlatforms clicktable = hit.transform.GetComponent<TurnPlatforms>();
-                clicktable.Rotate();
+                if (hit.transform.GetComponent<TurnPlatforms>())
+                {
+                    RotationPlatform clicktable = hit.transform.GetComponent<RotationPlatform>();
+                    clicktable.Rotate();
+                }
             }
         }
     }

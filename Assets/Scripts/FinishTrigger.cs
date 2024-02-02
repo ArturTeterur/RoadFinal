@@ -74,13 +74,12 @@ public class FinishTrigger : MonoBehaviour
         }
     }
 
-   
-
     public void TakeAwayBall()
     {
         _currentSpawnCount--;
         if (_currentSpawnCount <= 0)
         {
+            _canvasGameOver.SetActive(true);
             Time.timeScale = 0;
         }
     }
