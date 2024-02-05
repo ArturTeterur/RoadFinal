@@ -20,7 +20,7 @@ public class PlatformMovement : MonoBehaviour
 
             if (Physics.Raycast(ray,out hit))
             {
-                if (hit.transform.GetComponent<TurnPlatforms>())
+                if (hit.transform.GetComponent<RotationPlatform>())
                 {
                     RotationPlatform clicktable = hit.transform.GetComponent<RotationPlatform>();
                     clicktable.Rotate();

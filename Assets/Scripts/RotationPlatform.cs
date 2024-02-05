@@ -28,6 +28,5 @@ public class RotationPlatform : MonoBehaviour
             yield return null;
         }
         isRotating = false;
-        Debug.Log("щелк");
     }
 }

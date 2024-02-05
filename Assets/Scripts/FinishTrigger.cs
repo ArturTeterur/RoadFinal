@@ -59,7 +59,6 @@ public class FinishTrigger : MonoBehaviour
             _thirdStar.SetActive(true);
             ChargingStats();
             totalStars++;
-
         }
         Time.timeScale = 0f;
         PlayerPrefs.SetInt(_levelName, totalStars);
@@ -74,16 +73,6 @@ public class FinishTrigger : MonoBehaviour
         }
     }
 
-    public void TakeAwayBall()
-    {
-        _currentSpawnCount--;
-        if (_currentSpawnCount <= 0)
-        {
-            _canvasGameOver.SetActive(true);
-            Time.timeScale = 0;
-        }
-    }
-    
     private void ChargingStats()
     {
         if (PlayerPrefs.HasKey("_currentStars"))
@@ -106,4 +95,14 @@ public class FinishTrigger : MonoBehaviour
             }
         }
     }
+
+    public void TakeAwayBall()
+    {
+        _currentSpawnCount--;
+        if (_currentSpawnCount <= 0)
+        {
+            _canvasGameOver.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }  
 }

@@ -25,11 +25,6 @@ public class RewardViewingAds : MonoBehaviour
         _soundMuteHandler.OnVideoOpened();
         Time.timeScale = 0;
 
-        if (Input.GetKeyDown("space"))
-        {
-            _soundMuteHandler.OnVideoOpened();
-        }
-
         if (obj != null)
         {
             _soundMuteHandler.OnVideoOpened();
@@ -47,11 +42,6 @@ public class RewardViewingAds : MonoBehaviour
     private void OnRewarded()
     {
         Time.timeScale = 0;
-        if (Input.GetKeyDown("space"))
-        {
-            _soundMuteHandler.OnVideoOpened();
-        }
-        
     }
 
     private void OnClose()

@@ -4,15 +4,15 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour
 {
     [SerializeField] private int _numberBalls;
-    public float speed = 3f;
+    [SerializeField] float _speed = 3f;
     [SerializeField] private List<Transform> _currentWaypoints;
+    [SerializeField] bool _finished = false;
+    [SerializeField] private BallMovement _targetBall;
+    [SerializeField] private bool _obstacleAhead = false;
     private int _currentWaypointIndex = 0;
     private Rigidbody _rigidbody;
     private FinishTrigger _finishTrigger;
     private float _minimalDistance = 0.6f;
-    [SerializeField] bool _finished = false;
-    [SerializeField] private BallMovement _targetBall;
-    [SerializeField] private bool _obstacleAhead = false;
  
     private void Start()
     {
@@ -55,20 +55,19 @@ public class BallMovement : MonoBehaviour
         }
     }
 
-
     public void MoveToNextPoint()
     {
         if (_currentWaypoints != null && _currentWaypointIndex < _currentWaypoints.Count)
         { 
             Vector3 moveDerection = (_currentWaypoints[_currentWaypointIndex].position - transform.position).normalized;       
-           _rigidbody.velocity = moveDerection * speed;
+           _rigidbody.velocity = moveDerection * _speed;
              if (Vector3.Distance(transform.position, _currentWaypoints[_currentWaypointIndex].position) <= _minimalDistance)
              {
                 _currentWaypointIndex++;
              }
              else
              {
-                _rigidbody.AddForce(0, 0, -1 * speed);
+                _rigidbody.AddForce(0, 0, -1 * _speed);
              }
         }
     }
