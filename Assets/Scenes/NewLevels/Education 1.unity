@@ -7802,7 +7802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8522103944306689365, guid: a5e310c78ffc63c4291109b9c1cd23f3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.455511
+      value: -6.6
       objectReference: {fileID: 0}
     - target: {fileID: 8522103944306689365, guid: a5e310c78ffc63c4291109b9c1cd23f3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9322,10 +9322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aaa97716538be74da6ac71b209d4bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transformList: []
-  _currentIndexPosition: 0
-  targetObject: {fileID: 0}
-  moveSpeed: 5
 --- !u!1001 &3398969605739531133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10830,10 +10826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aaa97716538be74da6ac71b209d4bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transformList: []
-  _currentIndexPosition: 0
-  targetObject: {fileID: 0}
-  moveSpeed: 5
 --- !u!65 &5590418453562320548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11629,6 +11621,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1552404825270613711, guid: b2b99d1fb8859f7479ff36b27b2a12ff, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2627273446864027893, guid: b2b99d1fb8859f7479ff36b27b2a12ff, type: 3}
       propertyPath: m_RootOrder
       value: 0

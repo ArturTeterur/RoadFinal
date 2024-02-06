@@ -4,29 +4,42 @@ using UnityEngine;
 
 public class RotationPlatform : MonoBehaviour
 {
-    [SerializeField] private float rotationSpeed = 10f;
-    private bool isRotating = false;
+    private const string Coroutine = "MoveTowards";
+    [SerializeField] private float _rotationSpeed = 10f;
+    private bool _isRotating = false;
     private float _degreeRotation = 90f;
-
-    public void Rotate()
+    [SerializeField] private GameObject[] _triggers;
+    
+    private void RemoveTriggerWhenTurn(bool isRotating)
     {
-        if (!isRotating)
+        for (int i = 0; i < _triggers.Length; i++)
         {
-            StartCoroutine("MoveTowards");
+            _triggers[i].SetActive(isRotating);
         }
     }
 
     private IEnumerator MoveTowards()
     {
         Quaternion newRotation = transform.rotation * Quaternion.Euler(0, _degreeRotation, 0);
-        isRotating = true;
+        _isRotating = true;
+        RemoveTriggerWhenTurn(false);
 
         while (transform.rotation != newRotation)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, _rotationSpeed * Time.deltaTime);
 
             yield return null;
         }
-        isRotating = false;
+
+        _isRotating = false;
+        RemoveTriggerWhenTurn(true);
+
+    }
+    public void Rotate()
+    {
+        if (!_isRotating)
+        {
+            StartCoroutine(Coroutine);
+        }
     }
 }

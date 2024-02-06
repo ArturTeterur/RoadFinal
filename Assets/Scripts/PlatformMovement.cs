@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UIElements;
 
 public class PlatformMovement : MonoBehaviour
 {
@@ -30,8 +29,7 @@ public class PlatformMovement : MonoBehaviour
     }
 
     public void AddMoves()
-    {
-        
+    {      
         Time.timeScale = 1;
     }
 }

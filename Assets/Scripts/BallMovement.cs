@@ -12,7 +12,6 @@ public class BallMovement : MonoBehaviour
     private int _currentWaypointIndex = 0;
     private Rigidbody _rigidbody;
     private FinishTrigger _finishTrigger;
-    private float _minimalDistance = 0.6f;
  
     private void Start()
     {
@@ -22,7 +21,7 @@ public class BallMovement : MonoBehaviour
 
     private void FixedUpdate()
     {        
-         MoveToNextPoint();            
+         Move();            
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -32,9 +31,7 @@ public class BallMovement : MonoBehaviour
             if (ball._numberBalls == _numberBalls - 1)
             {
                _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
-                _targetBall = ball;
-                _obstacleAhead = true;
-            }
+                _targetBall = ball;            }
         }
         if (collider.gameObject.TryGetComponent<FinishTrigger>(out FinishTrigger finish))
         {
@@ -50,26 +47,14 @@ public class BallMovement : MonoBehaviour
         if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ball))
         {
              _rigidbody.constraints = RigidbodyConstraints.None;
-              MoveToNextPoint();
-            _obstacleAhead = false;
+              Move();
         }
     }
 
-    public void MoveToNextPoint()
+    public void Move()
     {
-        if (_currentWaypoints != null && _currentWaypointIndex < _currentWaypoints.Count)
-        { 
-            Vector3 moveDerection = (_currentWaypoints[_currentWaypointIndex].position - transform.position).normalized;       
-           _rigidbody.velocity = moveDerection * _speed;
-             if (Vector3.Distance(transform.position, _currentWaypoints[_currentWaypointIndex].position) <= _minimalDistance)
-             {
-                _currentWaypointIndex++;
-             }
-             else
-             {
-                _rigidbody.AddForce(0, 0, -1 * _speed);
-             }
-        }
+        Vector3 movement = new Vector3(0, 0, -1);
+        _rigidbody.velocity = movement * _speed;
     }
 
     public void Destroy()
@@ -82,7 +67,7 @@ public class BallMovement : MonoBehaviour
     {
         _currentWaypoints = waypoints;
         _currentWaypointIndex = 0;
-        MoveToNextPoint();
+        Move();
     }
 
     public void KeepMoving()
