@@ -9,6 +9,7 @@ public class BallMovement : MonoBehaviour
     [SerializeField] bool _finished = false;
     [SerializeField] private BallMovement _targetBall;
     [SerializeField] private bool _obstacleAhead = false;
+    [SerializeField] private float _maxSpeed;
     private int _currentWaypointIndex = 0;
     private Rigidbody _rigidbody;
     private FinishTrigger _finishTrigger;
@@ -17,11 +18,12 @@ public class BallMovement : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _finishTrigger = FindObjectOfType<FinishTrigger>();
+        _rigidbody.AddForce(Vector3.forward * _speed * -1, ForceMode.Impulse);
     }
 
     private void FixedUpdate()
     {        
-         Move();            
+         Move();
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -52,9 +54,12 @@ public class BallMovement : MonoBehaviour
     }
 
     public void Move()
-    {
-        Vector3 movement = new Vector3(0, 0, -1);
-        _rigidbody.velocity = movement * _speed;
+    {     
+        if (_rigidbody.velocity.magnitude < _maxSpeed)
+        {
+            _rigidbody.AddForce(Vector3.forward * _speed * -1, ForceMode.Impulse);
+
+        }
     }
 
     public void Destroy()

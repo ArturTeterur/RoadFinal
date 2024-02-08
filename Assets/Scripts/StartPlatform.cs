@@ -6,6 +6,6 @@ public class StartPlatform : MonoBehaviour
 {
     private void Start()
     {
-        Time.timeScale = 1.0f;
+        Time.timeScale = 0f;
     }
 }
