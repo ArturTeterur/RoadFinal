@@ -13,6 +13,7 @@ public class BallMovement : MonoBehaviour
     private int _currentWaypointIndex = 0;
     private Rigidbody _rigidbody;
     private FinishTrigger _finishTrigger;
+    [SerializeField] GameObject _finishEffect;
  
     private void Start()
     {
@@ -33,7 +34,8 @@ public class BallMovement : MonoBehaviour
             if (ball._numberBalls == _numberBalls - 1)
             {
                _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
-                _targetBall = ball;            }
+                _targetBall = ball;
+            }
         }
         if (collider.gameObject.TryGetComponent<FinishTrigger>(out FinishTrigger finish))
         {
@@ -41,6 +43,8 @@ public class BallMovement : MonoBehaviour
             {
                 finish.CountBalls();
                 _finished = true;
+                Destroy(gameObject);
+                Instantiate(_finishEffect, transform.position, Quaternion.identity);
             }
         }
     }

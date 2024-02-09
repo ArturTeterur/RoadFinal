@@ -2,6 +2,7 @@ using Agava.YandexGames;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class FinishTrigger : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class FinishTrigger : MonoBehaviour
     [SerializeField] private SpawnBalls _spawn;
     [SerializeField] private GameObject _canvasGameOver;
     [SerializeField] private string _levelName;
+    [SerializeField] private TextMeshProUGUI _text;
     private int _totalNumberStars = 0;
     private float _currentAmountBalls = 0;
     private float _spawnCount;
@@ -67,6 +69,7 @@ public class FinishTrigger : MonoBehaviour
     public void CountBalls()
     {
         _currentAmountBalls++;
+        _text.text = _currentAmountBalls.ToString();
         if (_currentSpawnCount == _currentAmountBalls)
         {
             Finish();

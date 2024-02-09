@@ -11,13 +11,14 @@ public class SpawnBalls : MonoBehaviour
     [SerializeField] private GameObject _spawnPoint;
     [SerializeField] private BallMovement _ballPrefab;
     [SerializeField] private float _timeSpawn;
-    [SerializeField] private WaypointPlatforms _waypointPlatforms;
     [SerializeField] private int _currentNumberBall = 0;
     [SerializeField] private List<BallMovement> _balls = new List<BallMovement>();
+    [SerializeField] private PlatformMovement _platformMovement;
 
     public void StartLevel()
     {
         StartCoroutine(CoroutineName);
+        _platformMovement.GameStart();
     }
 
     private IEnumerator WaterCreation()

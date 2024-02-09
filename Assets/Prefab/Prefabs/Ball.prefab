@@ -150,6 +150,7 @@ MonoBehaviour:
   _targetBall: {fileID: 0}
   _obstacleAhead: 0
   _maxSpeed: 5
+  _finishEffect: {fileID: 159062, guid: e4fc72c1b3da74d4697708bcd2a9db60, type: 3}
 --- !u!54 &7799513026253394769
 Rigidbody:
   m_ObjectHideFlags: 0
