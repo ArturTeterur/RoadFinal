@@ -95,7 +95,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3504024267186563781}
   serializedVersion: 4
-  m_Mass: 20
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -171,10 +171,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberBalls: 0
-  _speed: 2
+  _speed: 3
   _currentWaypoints: []
   _finished: 0
   _targetBall: {fileID: 0}
   _obstacleAhead: 0
-  _maxSpeed: 5
+  _maxSpeed: 3
+  _moveStraight: 0
+  _currentWaypointIndex: 0
   _finishEffect: {fileID: 159062, guid: e4fc72c1b3da74d4697708bcd2a9db60, type: 3}
+  acceleration: 2

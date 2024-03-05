@@ -261,7 +261,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2361094675664058671}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.038767584, y: 0.24499999, z: 0.574}
+  m_LocalPosition: {x: 0.039, y: 0.24499999, z: 0.484}
   m_LocalScale: {x: 0.13322178, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -464,6 +464,7 @@ GameObject:
   - component: {fileID: 1506059904305974523}
   - component: {fileID: 3668693422259811889}
   - component: {fileID: 3415902329372720003}
+  - component: {fileID: 6600027903953819108}
   m_Layer: 8
   m_Name: Ramp_Straight (2)
   m_TagString: Untagged
@@ -565,6 +566,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6cec637ae782b354b9eb6466e983e6ff, type: 3}
+--- !u!114 &6600027903953819108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4266195239826165659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801b4fec8e7f49f448d5728ea9f6d8e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 10
+  _triggers: []
+  _currentCountTurn: 0
 --- !u!1 &4561252925049227546
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,12 +649,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb6d570f31c01148a40a313d415fc42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 10
+  _rotationSpeed: 10
   _triggers:
   - {fileID: 633684528844095288}
   - {fileID: 996523489581507417}
   - {fileID: 3358792995028132604}
   - {fileID: 7292580625701541017}
+  _currentCountTurn: 0
 --- !u!1 &4920507376372863676
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,7 +780,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5044707289497047947}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.032106597, y: 0.24499999, z: 0.0069999695}
+  m_LocalPosition: {x: 0.012, y: 0.24499999, z: -0.092}
   m_LocalScale: {x: 0.13322178, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -794,7 +811,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5931787831070825423}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.032106597, y: 0.24499999, z: -0.833}
+  m_LocalPosition: {x: 0.032, y: 0.24499999, z: -0.664}
   m_LocalScale: {x: 0.13322178, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -978,7 +995,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7650426273563498260}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.032106597, y: 0.24499999, z: 0.0069999695}
+  m_LocalPosition: {x: 0.059, y: 0.24499999, z: 0.007}
   m_LocalScale: {x: 0.13322178, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -997,6 +1014,7 @@ GameObject:
   - component: {fileID: 1343836606922827634}
   - component: {fileID: 5226738588982326902}
   - component: {fileID: 8260034198413062037}
+  - component: {fileID: 9010141187554580821}
   m_Layer: 8
   m_Name: Ramp_Straight (3)
   m_TagString: Untagged
@@ -1098,3 +1116,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6cec637ae782b354b9eb6466e983e6ff, type: 3}
+--- !u!114 &9010141187554580821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244734004160273059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801b4fec8e7f49f448d5728ea9f6d8e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 10
+  _triggers: []
+  _currentCountTurn: 0
