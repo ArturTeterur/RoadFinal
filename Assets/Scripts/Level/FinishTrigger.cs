@@ -19,14 +19,17 @@ public class FinishTrigger : MonoBehaviour
     [SerializeField] private GameObject _canvasGameOver;
     [SerializeField] private string _levelName;
     [SerializeField] private InterstitialAd _interstitialAd;
-    [SerializeField] private List<RotationPlatform> _rotationPlatforms;
-    private bool _allCorrectRotation = false;
     private int _totalNumberStars = 0;
     private float _currentAmountBalls = 0;
-    private float _fallenBalls = 0;
+    private float _currentSpawnCount;
+    private float _spawnCount;
+    private float _currentPercent;
+    [SerializeField] private TextMeshProUGUI _text;
 
     private void Start()
     {
+        _spawnCount = _spawn.SpawnCount;
+        _currentSpawnCount = _spawn.SpawnCount;
         if (PlayerPrefs.HasKey(SaveNumberStarsName))
         {
             _totalNumberStars = PlayerPrefs.GetInt(SaveNumberStarsName);
@@ -35,64 +38,52 @@ public class FinishTrigger : MonoBehaviour
 
     private void Finish()
     {
+        _currentPercent = _currentAmountBalls / _spawnCount * 100f;
+        Debug.Log(_currentPercent.ToString());
         int totalStars = 0;
 
-        switch (_fallenBalls)
+        switch (_currentPercent)
         {
-            case < 2:
+            case >= 90:
                 _canvasFinish.SetActive(true);
                 _firstStar.SetActive(true);
                 _secondStar.SetActive(true);
                 _thirdStar.SetActive(true);
-                totalStars += 3;
-                break;
-            case <5:
-                _canvasFinish.SetActive(true);
-                _firstStar.SetActive(true);
-                _secondStar.SetActive(false);
-                _thirdStar.SetActive(false);
-                ChargingStats();
-                totalStars+= 2;
-                break;
-            case >10:
-                _canvasFinish.SetActive(true);
-                _firstStar.SetActive(true);
-                _secondStar.SetActive(false);
-                _thirdStar.SetActive(false);
                 ChargingStats();
                 totalStars++;
                 break;
+            case >= 50:
+                _canvasFinish.SetActive(true);
+                _firstStar.SetActive(true);
+                _secondStar.SetActive(true);
+                ChargingStats();
+                totalStars++;
+                break;
+            case >30:
+                _canvasFinish.SetActive(true);
+                _firstStar.SetActive(true);
+                ChargingStats();
+                totalStars++;
+                break;
+            case < 30:
+                _canvasGameOver.SetActive(true);
+                break;
+
         }
         Time.timeScale = 0f;
         PlayerPrefs.SetInt(_levelName, totalStars);
         PlayerPrefs.Save();
+        Debug.Log(totalStars.ToString() + " star");
         _interstitialAd.ShowAdv();
     }
 
-    private void CheckingAllPlatforms()
-    {
-        int numberCorrectPlatform = 0;
-        for (int i = 0; i < _rotationPlatforms.Count; i++)
-        {
-            if (_rotationPlatforms[i].CorrectPositionPlatform == true)
-            {
-                numberCorrectPlatform++;
-            }          
-        }
-
-        if(numberCorrectPlatform == _rotationPlatforms.Count)
-        {
-            _allCorrectRotation = true;
-            Finish();
-        }
-    }
 
     private void ChargingStats()
     {
-        if (PlayerPrefs.HasKey(SaveNumberStarsName))
+        if (PlayerPrefs.HasKey("_currentStars"))
         {
-            _totalNumberStars = PlayerPrefs.GetInt(SaveNumberStarsName);
-            PlayerPrefs.SetInt(SaveNumberStarsName, _totalNumberStars++);
+            _totalNumberStars = PlayerPrefs.GetInt("_currentStars");
+            PlayerPrefs.SetInt("_currentStars", _totalNumberStars++);
             PlayerPrefs.Save();
             if (PlayerAccount.IsAuthorized)
             {
@@ -101,7 +92,7 @@ public class FinishTrigger : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt(SaveNumberStarsName, _totalNumberStars++);
+            PlayerPrefs.SetInt("_CurrentStars", _totalNumberStars++);
             PlayerPrefs.Save();
             if (PlayerAccount.IsAuthorized)
             {
@@ -109,17 +100,23 @@ public class FinishTrigger : MonoBehaviour
             }
         }
     }
-    public void CountBalls()
-    {
-        _currentAmountBalls++;
-       if (_currentAmountBalls >= 10)
-       {
-            CheckingAllPlatforms();
-       }
-    }
 
     public void TakeAwayBall()
     {
-        _fallenBalls++;
-    }  
+        _currentSpawnCount--;
+        if (_currentSpawnCount <= 0)
+        {
+            _canvasGameOver.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+    public void CountBalls()
+    {
+        _currentAmountBalls++;
+        _text.text = _currentAmountBalls.ToString();
+        if (_currentSpawnCount == _currentAmountBalls)
+        {
+            Finish();
+        }
+    }
 }

@@ -9,14 +9,19 @@ public class SoundMuteHandler : MonoBehaviour
     [SerializeField] private Sprite _unmute;
     [SerializeField] private Image _image;
     [SerializeField] private Button _button;
+    bool _isOpen = false;
 
     private string _isSoundOn = "isSoundOn";
     private bool _isSoundMute;
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(SoundMuteButtonOn);
-        WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
+        if (_isOpen == false)
+        {
+            _button.onClick.AddListener(SoundMuteButtonOn);
+            WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
+
+        }
     }
 
 
@@ -30,8 +35,12 @@ public class SoundMuteHandler : MonoBehaviour
     {
         if (!_isSoundMute)
         {
-            AudioListener.pause = inBackground;
-            AudioListener.volume = inBackground ? 0 : 1; 
+            if (_isOpen == false)
+            {
+                AudioListener.pause = inBackground;
+                AudioListener.volume = inBackground ? 0 : 1;
+
+            }
         }
     }
 
@@ -77,17 +86,19 @@ public class SoundMuteHandler : MonoBehaviour
         }
     }
 
-    public
-        void OnVideoClosed()
+
+    public void OnVideoClosed()
     {
         if (!_isSoundMute)
         {
             EnableSound();
         }
+        _isOpen = false;
     }
 
     public void OnVideoOpened()
     {
+        _isOpen = true;
         DisableSound();
     }
 

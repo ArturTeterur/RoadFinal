@@ -13,28 +13,33 @@ public class SpawnBalls : MonoBehaviour
     [SerializeField] private List<BallMovement> _balls = new List<BallMovement>();
     [SerializeField] private PlatformMovement _platformMovement;
     [SerializeField] private bool _ballInWay = false;
-    private float _spawnCount;
+    [SerializeField] private float _spawnCount;
+    public float SpawnCount => _spawnCount;
+    private int _currentNumber = 0;
+    private int _countBall = 0;
 
 
     private IEnumerator BallCreation()
     {
-        for (int i = 0; i < _spawnCount; i++)
+        while (_spawnCount != _countBall)
         {
             if (!_ballInWay)
             {
+                _countBall++;
                 BallMovement ball = Instantiate(_balls[Random.Range(0, _balls.Count)], _spawnPoint.transform.position, Quaternion.identity);           
                 int numberball = _currentNumberBall;
-                ball.GetComponent<BallMovement>().GetNumberBalls(i);
+                ball.GetComponent<BallMovement>().GetNumberBalls(_countBall);
                 yield return new WaitForSeconds(_timeSpawn);
-            }
+            }          
             else
             {
                 yield return null;
             }
         }
+      
     }
 
-    private void OnTriggerStay(Collider collider)
+    private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ballComponent))
         {
@@ -45,11 +50,11 @@ public class SpawnBalls : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         _ballInWay = false;
+        
     }
 
     public void StartLevel()
     {
-        _spawnCount = Mathf.Infinity;
         _platformMovement.GameStart();
         if (!_ballInWay)
         {

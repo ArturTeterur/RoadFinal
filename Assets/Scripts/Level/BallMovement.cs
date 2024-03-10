@@ -40,10 +40,11 @@ public class BallMovement : MonoBehaviour
         {
             if (_finished == false)
             {
-                finish.CountBalls();
                 _finished = true;
+                Debug.Log(_numberBalls);
                 Destroy(gameObject);
                 Instantiate(_finishEffect, transform.position, Quaternion.identity);
+                finish.CountBalls();
             }
         }
     }
@@ -85,6 +86,7 @@ public class BallMovement : MonoBehaviour
 
     public void Destroy()
     {
+        Debug.Log(_numberBalls);
         _finishTrigger.TakeAwayBall();
         Destroy(gameObject);
     }
