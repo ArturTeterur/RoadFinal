@@ -11,10 +11,11 @@ public class FinishTrigger : MonoBehaviour
 {
     private const string LeaderboardName = "LeaderBoard";
     private const string SaveNumberStarsName = "_currentStars";
-    [SerializeField] GameObject _canvasFinish;
-    [SerializeField] GameObject _firstStar;
-    [SerializeField] GameObject _secondStar;
-    [SerializeField] GameObject _thirdStar;
+    [SerializeField] private GameObject _canvasFinish;
+    [SerializeField] private GameObject _firstStar;
+    [SerializeField] private GameObject _secondStar;
+    [SerializeField] private GameObject _thirdStar;
+    [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private SpawnBalls _spawn;
     [SerializeField] private GameObject _canvasGameOver;
     [SerializeField] private string _levelName;
@@ -24,7 +25,6 @@ public class FinishTrigger : MonoBehaviour
     private float _currentSpawnCount;
     private float _spawnCount;
     private float _currentPercent;
-    [SerializeField] private TextMeshProUGUI _text;
 
     private void Start()
     {
@@ -34,6 +34,18 @@ public class FinishTrigger : MonoBehaviour
         {
             _totalNumberStars = PlayerPrefs.GetInt(SaveNumberStarsName);
         }
+    }
+
+    private void OnEnable()
+    {
+        MoveOnPlatformTrigger._removingBallWhenTurning += RemovalFromTotalBoals;
+        Ground.BallOutGame += TakeAwayBall;
+    }
+
+    private void OnDisable()
+    {
+        MoveOnPlatformTrigger._removingBallWhenTurning -= RemovalFromTotalBoals;
+        Ground.BallOutGame -= TakeAwayBall;
     }
 
     private void Finish()
@@ -77,6 +89,10 @@ public class FinishTrigger : MonoBehaviour
         _interstitialAd.ShowAdv();
     }
 
+    private void RemovalFromTotalBoals()
+    {
+        _spawnCount--;
+    }
 
     private void ChargingStats()
     {

@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ public class LeaderBoardButton : MonoBehaviour
     [SerializeField] private Button _button;
     [SerializeField] private LeaderBoardDisplay _leaderBoardDisplay;
     [SerializeField] private Button _closeButton;
+    [SerializeField] private GameObject _canvasAutorization;
 
     private void OnEnable()
     {
@@ -41,11 +43,16 @@ public class LeaderBoardButton : MonoBehaviour
 
     private void Show()
     {
-
-        _leaderBoardDisplay.gameObject.SetActive(true);
-        _leaderBoardDisplay.SetLeaderboardScore();
-        _leaderBoardDisplay.OpenYandexLeaderboard();
-
+        if (PlayerAccount.IsAuthorized)
+        {
+            _leaderBoardDisplay.gameObject.SetActive(true);
+            _leaderBoardDisplay.SetLeaderboardScore();
+            _leaderBoardDisplay.OpenYandexLeaderboard();
+        }
+        if (!PlayerAccount.IsAuthorized)
+        {
+            _canvasAutorization.gameObject.SetActive(true);
+        }
     }
 
     private void Hide()

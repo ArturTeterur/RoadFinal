@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,6 +10,7 @@ public class MoveOnPlatformTrigger : MonoBehaviour
     [SerializeField] private List<GameObject> objectsOnPlatform = new List<GameObject>();
     [SerializeField] private RotationPlatform _rotationPlatform;
     [SerializeField] private List<GameObject> _connectersPlatform;
+    public static event Action _removingBallWhenTurning;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -38,6 +40,7 @@ public class MoveOnPlatformTrigger : MonoBehaviour
         foreach (GameObject obj in objectsOnPlatform)
         {
             Destroy(obj);
+            _removingBallWhenTurning();
         }
         EneblingConnecters();
     }
