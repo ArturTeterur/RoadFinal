@@ -25,7 +25,7 @@ public class RotationPlatform : MonoBehaviour
     {
         Quaternion newRotation = transform.rotation * Quaternion.Euler(0, _degreeRotation, 0);
         _isRotating = true;
-        RemoveTriggerWhenTurn(false);
+        RemoveTriggerWhenTurn(false);      
         _platformTrigger.DestroyObjectsOnPlatform();
 
         while (transform.rotation != newRotation)

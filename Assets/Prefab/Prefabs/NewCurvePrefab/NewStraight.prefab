@@ -578,9 +578,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801b4fec8e7f49f448d5728ea9f6d8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 10
-  _triggers: []
-  _currentCountTurn: 0
+  objectsOnPlatform: []
+  _rotationPlatform: {fileID: 7087684592280828367}
+  _connectersPlatform: []
 --- !u!1 &4561252925049227546
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +655,7 @@ MonoBehaviour:
   - {fileID: 996523489581507417}
   - {fileID: 3358792995028132604}
   - {fileID: 7292580625701541017}
-  _currentCountTurn: 0
+  _platformTrigger: {fileID: 0}
 --- !u!1 &4920507376372863676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,6 +1128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801b4fec8e7f49f448d5728ea9f6d8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 10
-  _triggers: []
-  _currentCountTurn: 0
+  objectsOnPlatform: []
+  _rotationPlatform: {fileID: 7087684592280828367}
+  _connectersPlatform: []

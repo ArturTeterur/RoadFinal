@@ -6,17 +6,17 @@ using UnityEngine;
 
 public class MoveOnPlatformTrigger : MonoBehaviour
 {
-
-    [SerializeField] private List<GameObject> objectsOnPlatform = new List<GameObject>();
+    [SerializeField] private List<BallMovement> objectsOnPlatform = new List<BallMovement>();
     [SerializeField] private RotationPlatform _rotationPlatform;
     [SerializeField] private List<GameObject> _connectersPlatform;
-    public static event Action _removingBallWhenTurning;
+    private bool _ballOnPlatform;
+    
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent<BallMovement>(out BallMovement ballComponent))
         {
-            objectsOnPlatform.Add(ballComponent.gameObject);
+            objectsOnPlatform.Add(ballComponent);
         }
     }
 
@@ -24,7 +24,7 @@ public class MoveOnPlatformTrigger : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<BallMovement>(out BallMovement ballComponent))
         {
-            objectsOnPlatform.Remove(ballComponent.gameObject);
+            objectsOnPlatform.Remove(ballComponent);
         }
     }
     private void EneblingConnecters()
@@ -37,11 +37,15 @@ public class MoveOnPlatformTrigger : MonoBehaviour
 
     public void DestroyObjectsOnPlatform()
     {
-        foreach (GameObject obj in objectsOnPlatform)
+        if (objectsOnPlatform.Count >0)
         {
-            Destroy(obj);
-            _removingBallWhenTurning();
+            for (int i = 0; i < objectsOnPlatform.Count; i++)
+            {
+                objectsOnPlatform[i].DestroyOnPlatform();
+                objectsOnPlatform.Remove(objectsOnPlatform[i]);             
+            }
         }
-        EneblingConnecters();
+        
+        EneblingConnecters();        
     }
 }

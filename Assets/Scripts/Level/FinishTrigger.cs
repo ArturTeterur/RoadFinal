@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Lean.Localization;
-using System.Linq;
-using Unity.VisualScripting;
 
 public class FinishTrigger : MonoBehaviour
 {
@@ -23,7 +20,7 @@ public class FinishTrigger : MonoBehaviour
     private int _totalNumberStars = 0;
     private float _currentAmountBalls = 0;
     private float _currentSpawnCount;
-    private float _spawnCount;
+    [SerializeField] private float _spawnCount;
     private float _currentPercent;
 
     private void Start()
@@ -38,13 +35,13 @@ public class FinishTrigger : MonoBehaviour
 
     private void OnEnable()
     {
-        MoveOnPlatformTrigger._removingBallWhenTurning += RemovalFromTotalBoals;
+        BallMovement.RemovingBallWhenTurning += RemovalFromTotalBoals;
         Ground.BallOutGame += TakeAwayBall;
     }
 
     private void OnDisable()
     {
-        MoveOnPlatformTrigger._removingBallWhenTurning -= RemovalFromTotalBoals;
+        BallMovement.RemovingBallWhenTurning -= RemovalFromTotalBoals;
         Ground.BallOutGame -= TakeAwayBall;
     }
 
@@ -62,14 +59,14 @@ public class FinishTrigger : MonoBehaviour
                 _secondStar.SetActive(true);
                 _thirdStar.SetActive(true);
                 ChargingStats();
-                totalStars++;
+                totalStars+= 3;
                 break;
             case >= 50:
                 _canvasFinish.SetActive(true);
                 _firstStar.SetActive(true);
                 _secondStar.SetActive(true);
                 ChargingStats();
-                totalStars++;
+                totalStars+=2;
                 break;
             case >30:
                 _canvasFinish.SetActive(true);
@@ -85,13 +82,17 @@ public class FinishTrigger : MonoBehaviour
         Time.timeScale = 0f;
         PlayerPrefs.SetInt(_levelName, totalStars);
         PlayerPrefs.Save();
-        Debug.Log(totalStars.ToString() + " star");
         _interstitialAd.ShowAdv();
     }
 
     private void RemovalFromTotalBoals()
     {
         _spawnCount--;
+        _currentSpawnCount--;
+        if (_spawnCount <= 0)
+        {
+            Finish();
+        }
     }
 
     private void ChargingStats()

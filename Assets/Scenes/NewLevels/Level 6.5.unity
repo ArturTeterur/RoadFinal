@@ -8296,11 +8296,11 @@ MonoBehaviour:
   _firstStar: {fileID: 1275053248}
   _secondStar: {fileID: 347462256}
   _thirdStar: {fileID: 1124734438}
+  _text: {fileID: 944832766}
   _spawn: {fileID: 1537205682}
   _canvasGameOver: {fileID: 2124557404}
   _levelName: LevelFour
   _interstitialAd: {fileID: 734902026}
-  _text: {fileID: 944832766}
 --- !u!65 &1501562314
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10539,8 +10539,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850384200}
   m_LocalRotation: {x: 0.0000000218557, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.59, y: -7, z: 3.8}
-  m_LocalScale: {x: 4, y: 3, z: 5}
+  m_LocalPosition: {x: 37.7, y: -7, z: 3.8}
+  m_LocalScale: {x: 15, y: 3, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 99405775}
@@ -14631,8 +14631,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6577560013267995122}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -26.2, y: -7, z: 7}
-  m_LocalScale: {x: 7, y: 4, z: 7}
+  m_LocalPosition: {x: -37.5, y: -7, z: 7}
+  m_LocalScale: {x: 19, y: 4, z: 22}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 99405775}

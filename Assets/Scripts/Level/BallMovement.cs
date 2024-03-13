@@ -1,10 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class BallMovement : MonoBehaviour
 {
     [SerializeField] private List<Transform> _currentWaypoints;
-    [SerializeField] private int _numberBalls;
+    public int _numberBalls;
     [SerializeField] float _speed = 3f;
     [SerializeField] private float _maxSpeed;
     [SerializeField] bool _finished = false;
@@ -14,7 +16,8 @@ public class BallMovement : MonoBehaviour
     private float _minimalDistance = 1f;
     private Rigidbody _rigidbody;
     private FinishTrigger _finishTrigger;
- 
+    public static event Action RemovingBallWhenTurning;
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -41,7 +44,6 @@ public class BallMovement : MonoBehaviour
             if (_finished == false)
             {
                 _finished = true;
-                Debug.Log(_numberBalls);
                 Destroy(gameObject);
                 Instantiate(_finishEffect, transform.position, Quaternion.identity);
                 finish.CountBalls();
@@ -84,10 +86,14 @@ public class BallMovement : MonoBehaviour
         }
     }
 
-    public void Destroy()
+    public void DestroyOnPlatform()
+    {    
+        Destroy(gameObject);
+        RemovingBallWhenTurning();
+    }
+
+    public void DestroyOnGround()
     {
-        Debug.Log(_numberBalls);
-        _finishTrigger.TakeAwayBall();
         Destroy(gameObject);
     }
 

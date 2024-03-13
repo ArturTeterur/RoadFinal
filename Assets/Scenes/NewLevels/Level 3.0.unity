@@ -9472,7 +9472,7 @@ MonoBehaviour:
   - {fileID: 660000904503381025, guid: 31e5fb8609344374aa3d779a2e06b2d8, type: 3}
   _platformMovement: {fileID: 1866318790}
   _ballInWay: 0
-  _spawnCount: 20
+  _spawnCount: 15
 --- !u!4 &1537205683
 Transform:
   m_ObjectHideFlags: 0
@@ -11101,8 +11101,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850384200}
   m_LocalRotation: {x: 0.0000000218557, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.59, y: -7, z: 7.33}
-  m_LocalScale: {x: 4, y: 3, z: 5}
+  m_LocalPosition: {x: 23.9, y: -7, z: -2.1}
+  m_LocalScale: {x: 12, y: 3, z: 12}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 99405775}
@@ -12455,11 +12455,11 @@ MonoBehaviour:
   _firstStar: {fileID: 1275053248}
   _secondStar: {fileID: 347462256}
   _thirdStar: {fileID: 1124734438}
+  _text: {fileID: 483103441}
   _spawn: {fileID: 1537205682}
   _canvasGameOver: {fileID: 2124557404}
   _levelName: LevelThree
   _interstitialAd: {fileID: 734902026}
-  _text: {fileID: 483103441}
 --- !u!65 &1998243709
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13600,8 +13600,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044267420452469556}
   m_LocalRotation: {x: 0.0000000218557, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.64077, y: -7, z: 26.864952}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalPosition: {x: 15.5, y: -7, z: 48.8}
+  m_LocalScale: {x: 12, y: 6, z: 12}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 99405775}
@@ -14676,8 +14676,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6404780410675814503}
   m_LocalRotation: {x: 0.0000000218557, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.6, y: -7, z: 29.3}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -48.5, y: -7, z: 19.6}
+  m_LocalScale: {x: 12, y: 2, z: 12}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 99405775}
