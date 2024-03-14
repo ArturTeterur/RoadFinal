@@ -6,7 +6,7 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour
 {
     [SerializeField] private List<Transform> _currentWaypoints;
-    public int _numberBalls;
+    [SerializeField] int _numberBalls;
     [SerializeField] float _speed = 3f;
     [SerializeField] private float _maxSpeed;
     [SerializeField] bool _finished = false;

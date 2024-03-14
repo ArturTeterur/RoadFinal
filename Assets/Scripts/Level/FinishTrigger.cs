@@ -20,7 +20,7 @@ public class FinishTrigger : MonoBehaviour
     private int _totalNumberStars = 0;
     private float _currentAmountBalls = 0;
     private float _currentSpawnCount;
-    [SerializeField] private float _spawnCount;
+    private float _spawnCount;
     private float _currentPercent;
 
     private void Start()
@@ -89,7 +89,7 @@ public class FinishTrigger : MonoBehaviour
     {
         _spawnCount--;
         _currentSpawnCount--;
-        if (_spawnCount <= 0)
+        if (_spawnCount <= 0 || _currentSpawnCount <= 0)
         {
             Finish();
         }
