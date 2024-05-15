@@ -11,8 +11,7 @@ public class Ground : MonoBehaviour
         if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ballComponent))
         {
             BallOutGame();
-            ballComponent.DestroyOnGround();
-            Debug.Log("+++++++++++++");
+            ballComponent.Destroy();
         }
     }
 }

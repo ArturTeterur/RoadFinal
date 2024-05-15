@@ -5,22 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class LevelMenu : MonoBehaviour
 {
+    [SerializeField] private GameObject _CanvasMenu;
+    [SerializeField] private GameObject _CanvasMenuMobile;
     [SerializeField] private string _nameLevel;
     [SerializeField] private GameObject _firstStar;
     [SerializeField] private GameObject _secondStar;
     [SerializeField] private GameObject _thirdStar;
     [SerializeField] private GameObject _closebutton;
+    [SerializeField] private GameObject _nextLevelButton;
     [SerializeField] private int _menuNumber;
 
     private void Start()
     {
-        Debug.Log(_nameLevel);
-        Debug.Log(_nameLevel + PlayerPrefs.GetInt(_nameLevel));
         if(PlayerPrefs.HasKey(_nameLevel))
         {
             switch (PlayerPrefs.GetInt(_nameLevel))
             {
                 case 1:
+                    if (_nextLevelButton != null)
+                    {
+                        _nextLevelButton.SetActive(false);
+                    }
                     _firstStar.SetActive(true);
                     break;
                 case 2:
@@ -33,7 +38,6 @@ public class LevelMenu : MonoBehaviour
                     _thirdStar.SetActive(true);
                     break;
             }
-
             _closebutton.SetActive(false);
         }
     }

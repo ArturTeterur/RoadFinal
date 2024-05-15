@@ -6,18 +6,17 @@ using Agava.YandexGames;
 public class InterstitialAd : MonoBehaviour
 {
     [SerializeField] private SoundMuteHandler _soundMuteHandler;
+    [SerializeField] private GameObject _testFocus;
 
-    private void OnEnable()
+    private void Start()
     {
-        Application.focusChanged += ApplicationFocusChanged;
+        ShowAdv();
+        if(_soundMuteHandler = null)
+        {
+            _soundMuteHandler = GameObject.FindObjectOfType<SoundMuteHandler>();
+        }
     }
-
-    private void OnDisable()
-    {
-        Application.focusChanged -= ApplicationFocusChanged;
-    }
-
-    public void ShowAdv()
+    private void ShowAdv()
     {
         Agava.YandexGames.InterstitialAd.Show(Open, Close);
     }
@@ -26,20 +25,16 @@ public class InterstitialAd : MonoBehaviour
     {
         if (close)
         {
+            Time.timeScale = 1;
             _soundMuteHandler.OnVideoClosed();
+            _testFocus.SetActive(true);
         }
     }
 
     private void Open()
     {
+        Time.timeScale = 0;
         _soundMuteHandler.OnVideoOpened();
-    }
-
-    private void ApplicationFocusChanged(bool Focus)
-    {
-        if (Focus == true)
-        {
-            _soundMuteHandler.OnVideoOpened();
-        }
+        _testFocus.SetActive(false);
     }
 }

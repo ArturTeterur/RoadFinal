@@ -14,6 +14,16 @@ public class RewardViewingAds : MonoBehaviour
     [SerializeField] private Button _buttonAd;
     [SerializeField] private PlatformMovement _platformMovement;
     [SerializeField] private MenuNextLevel _menuNextLevel;
+    [SerializeField] private GameObject _testFocus;
+    [SerializeField] private string _nameNextLevel;
+
+    private void Start()
+    {
+        if (_soundMuteHandler = null)
+        {
+            _soundMuteHandler = GameObject.FindObjectOfType<SoundMuteHandler>();
+        }
+    }
 
     public void ShowAdvButton()
     {
@@ -37,10 +47,15 @@ public class RewardViewingAds : MonoBehaviour
         _soundMuteHandler.OnVideoOpened();
         _buttonAd.interactable = false;
         _buttonShowAdv.SetActive(false);
+        _testFocus.SetActive(false);
     }
 
     private void OnRewarded()
     {
+        if(_nameNextLevel != null)
+        {
+            PlayerPrefs.SetInt(_nameNextLevel,0);
+        }
         Time.timeScale = 0;
     }
 
@@ -49,5 +64,6 @@ public class RewardViewingAds : MonoBehaviour
         _menuNextLevel.NextLevel();
         Time.timeScale = 1;
         _soundMuteHandler.OnVideoClosed();
+        _testFocus.SetActive(true);
     }
 }

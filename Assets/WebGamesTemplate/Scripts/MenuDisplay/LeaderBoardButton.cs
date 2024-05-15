@@ -48,6 +48,7 @@ public class LeaderBoardButton : MonoBehaviour
             _leaderBoardDisplay.gameObject.SetActive(true);
             _leaderBoardDisplay.SetLeaderboardScore();
             _leaderBoardDisplay.OpenYandexLeaderboard();
+            Time.timeScale = 0f;
         }
         if (!PlayerAccount.IsAuthorized)
         {
@@ -58,5 +59,6 @@ public class LeaderBoardButton : MonoBehaviour
     private void Hide()
     {
         _leaderBoardDisplay.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 }

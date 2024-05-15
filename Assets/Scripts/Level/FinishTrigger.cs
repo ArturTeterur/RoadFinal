@@ -3,45 +3,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using Agava.WebUtility;
 
 public class FinishTrigger : MonoBehaviour
 {
     private const string LeaderboardName = "LeaderBoard";
     private const string SaveNumberStarsName = "_currentStars";
+    [SerializeField] private GameObject _canvasFinishMobile;
+    [SerializeField] private GameObject _canvasGameOverMobile;
     [SerializeField] private GameObject _canvasFinish;
     [SerializeField] private GameObject _firstStar;
     [SerializeField] private GameObject _secondStar;
     [SerializeField] private GameObject _thirdStar;
+    [SerializeField] private GameObject _firstStarMobile;
+    [SerializeField] private GameObject _secondStarMobile;
+    [SerializeField] private GameObject _thirdStarMobile;
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private SpawnBalls _spawn;
     [SerializeField] private GameObject _canvasGameOver;
     [SerializeField] private string _levelName;
-    [SerializeField] private InterstitialAd _interstitialAd;
     private int _totalNumberStars = 0;
-    private float _currentAmountBalls = 0;
-    private float _currentSpawnCount;
-    private float _spawnCount;
+    [SerializeField] private float _currentAmountBalls = 0; // которые финишировали
+    [SerializeField] private float _currentSpawnCount; // сколько есть мячей сейчас
+    [SerializeField] private float _spawnCount; // начальное количество
     private float _currentPercent;
+    private bool _isMobile;
+
 
     private void Start()
     {
+        if (Device.IsMobile)
+        {
+            _canvasFinish = _canvasFinishMobile;
+            _canvasGameOver = _canvasGameOverMobile;
+            _firstStar = _firstStarMobile;
+            _secondStar = _secondStarMobile;
+            _thirdStar = _thirdStarMobile;
+        }
         _spawnCount = _spawn.SpawnCount;
         _currentSpawnCount = _spawn.SpawnCount;
+        PlayerPrefs.SetInt(_levelName, 0);
         if (PlayerPrefs.HasKey(SaveNumberStarsName))
         {
             _totalNumberStars = PlayerPrefs.GetInt(SaveNumberStarsName);
         }
+        PlayerPrefs.Save();
+        Debug.Log(_levelName);
     }
 
     private void OnEnable()
     {
-        BallMovement.RemovingBallWhenTurning += RemovalFromTotalBoals;
         Ground.BallOutGame += TakeAwayBall;
     }
 
     private void OnDisable()
     {
-        BallMovement.RemovingBallWhenTurning -= RemovalFromTotalBoals;
         Ground.BallOutGame -= TakeAwayBall;
     }
 
@@ -53,49 +70,39 @@ public class FinishTrigger : MonoBehaviour
 
         switch (_currentPercent)
         {
-            case >= 90:
+            case >= 90f:
                 _canvasFinish.SetActive(true);
                 _firstStar.SetActive(true);
                 _secondStar.SetActive(true);
                 _thirdStar.SetActive(true);
                 ChargingStats();
-                totalStars+= 3;
+                totalStars += 3;
                 break;
-            case >= 50:
+            case >= 50f:
                 _canvasFinish.SetActive(true);
                 _firstStar.SetActive(true);
                 _secondStar.SetActive(true);
                 ChargingStats();
-                totalStars+=2;
+                totalStars += 2;
                 break;
-            case >30:
+            case > 30f:
                 _canvasFinish.SetActive(true);
                 _firstStar.SetActive(true);
-                ChargingStats();
+                ChargingStats();                           
+                _canvasFinish.SetActive(true);               
                 totalStars++;
                 break;
-            case < 30:
-                _canvasGameOver.SetActive(true);
+            case < 30f:               
+                _canvasGameOver.SetActive(true);                                    
                 break;
 
         }
         Time.timeScale = 0f;
         PlayerPrefs.SetInt(_levelName, totalStars);
         PlayerPrefs.Save();
-        _interstitialAd.ShowAdv();
     }
 
-    private void RemovalFromTotalBoals()
-    {
-        _spawnCount--;
-        _currentSpawnCount--;
-        if (_spawnCount <= 0 || _currentSpawnCount <= 0)
-        {
-            Finish();
-        }
-    }
-
-    private void ChargingStats()
+    public void ChargingStats()
     {
         if (PlayerPrefs.HasKey("_currentStars"))
         {
@@ -121,9 +128,9 @@ public class FinishTrigger : MonoBehaviour
     public void TakeAwayBall()
     {
         _currentSpawnCount--;
-        if (_currentSpawnCount <= 0)
+        if (_currentSpawnCount <= 0 || _currentSpawnCount == _currentAmountBalls)
         {
-            _canvasGameOver.SetActive(true);
+            Finish();
             Time.timeScale = 0;
         }
     }

@@ -1,6 +1,7 @@
 using Agava.YandexGames;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -10,6 +11,9 @@ public class MenuNextLevel : MonoBehaviour
     private const string CurrentLevel = "_currentLevel";
     private const string LeaderboardName = "LeaderBoard";
     [SerializeField] private SpawnBalls _spawnBalls;
+    [SerializeField] private InterstitialAd _interstitialAd;
+    [SerializeField] private bool _educationLevel;
+    [SerializeField] private GameObject _education;
     private int _nextLevel;
     private int _menuNumber = 1;
     private int _currentLevel;
@@ -18,27 +22,40 @@ public class MenuNextLevel : MonoBehaviour
 
     private void Awake()
     {
-        if (PlayerPrefs.HasKey(CurrentLevel))
+        PlayerPrefs.SetInt(CurrentLevel, SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void Start()
+    {
+        if (!_educationLevel)
         {
-            _currentLevel = PlayerPrefs.GetInt(CurrentLevel);          
-        }
-        else
-        {
-            _currentLevel = 1;
+            StartLevel();
         }
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        PlayerPrefs.SetInt(CurrentLevel, SceneManager.GetActiveScene().buildIndex);       
     }
 
-    public void StartLevel(GameObject canvasStart)
+    public void StartLevel()
     {
-        Time.timeScale = 1;
-        canvasStart.SetActive(false);
-        _spawnBalls.StartLevel();
+        if(_educationLevel)
+        {
+            Time.timeScale = 1;
+            _educationLevel = false;
+            if (_education != null)
+            {
+                _education.SetActive(false);
+            }
+            _spawnBalls.StartLevel();
+            
+        }
+        else
+        {
+            Time.timeScale = 1;
+            _spawnBalls.StartLevel();
+        }
     }
 
     public void NextLevel()
@@ -49,34 +66,14 @@ public class MenuNextLevel : MonoBehaviour
             _nextLevel = _levelAfterLast;
         }
         SceneManager.LoadScene(_nextLevel);
-        PlayerPrefs.SetInt(CurrentLevel, SceneManager.GetActiveScene().buildIndex);
-        if (PlayerAccount.IsAuthorized)
-        {
-            Agava.YandexGames.Leaderboard.SetScore(LeaderboardName, _currentLevel++);
-        }
     }
 
-    public void MainMenuLevel()
-    {
-        if (PlayerPrefs.HasKey(CurrentLevel))
-        {
-            int level = PlayerPrefs.GetInt(CurrentLevel);
-            SceneManager.LoadScene(level);
-        }
-        else
-        {
-            _nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-            SceneManager.LoadScene(_nextLevel);
-        }
-    }
-
-    public void Menu()
+    public void Menu(bool winnerMenu)
     {
         SceneManager.LoadScene(_menuNumber);
-    }
-
-    public void GoLevel(int numberScene)
-    {
-        SceneManager.LoadScene(numberScene);
+        if (winnerMenu)
+        {
+            PlayerPrefs.SetInt(CurrentLevel, SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }

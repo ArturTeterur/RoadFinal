@@ -6,6 +6,7 @@ public class WaypointPlatforms : MonoBehaviour
     [SerializeField] private List<Transform> _waypoints;
     [SerializeField] private bool _itsStartPlatform;
     [SerializeField] private GameObject _secondTriggerPlatforms;
+    
 
     private void OnTriggerEnter(Collider collider)
     {

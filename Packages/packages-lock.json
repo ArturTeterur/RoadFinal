@@ -8,11 +8,11 @@
       "hash": "32d39130ea78dce0c3ea0ed83ec5f022efefde42"
     },
     "com.agava.yandexgames": {
-      "version": "https://github.com/forcepusher/com.agava.yandexgames.git#11.2.0",
+      "version": "https://github.com/forcepusher/com.agava.yandexgames.git#16.0.0",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "e6d74d2a2e4b2e43b2d185b1d25aa62a3e8ef6d5"
+      "hash": "faf20595c0f18f4a471e6b27fbd5fbf5fd05d7a2"
     },
     "com.unity.2d.animation": {
       "version": "9.0.3",
@@ -158,6 +158,15 @@
         "com.unity.settings-manager": "1.0.3",
         "com.unity.modules.physics": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.recorder": {
+      "version": "4.0.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.timeline": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },

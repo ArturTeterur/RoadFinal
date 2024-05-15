@@ -18,30 +18,13 @@ public class SoundMuteHandler : MonoBehaviour
     {
         if (_isOpen == false)
         {
-            _button.onClick.AddListener(SoundMuteButtonOn);
-            WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
-
+            _button.onClick.AddListener(SoundMuteButtonOn);       
         }
     }
-
 
     private void OnDisable()
     {
         _button.onClick.RemoveListener(SoundMuteButtonOn);
-        WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
-    }
-
-    private void OnInBackgroundChange(bool inBackground)
-    {
-        if (!_isSoundMute)
-        {
-            if (_isOpen == false)
-            {
-                AudioListener.pause = inBackground;
-                AudioListener.volume = inBackground ? 0 : 1;
-
-            }
-        }
     }
 
     private void Start()
@@ -68,7 +51,7 @@ public class SoundMuteHandler : MonoBehaviour
         }
     }
 
-    private void SoundMuteButtonOn()
+    public void SoundMuteButtonOn()
     {
         if (_isSoundMute == false)
         {
@@ -86,7 +69,6 @@ public class SoundMuteHandler : MonoBehaviour
         }
     }
 
-
     public void OnVideoClosed()
     {
         if (!_isSoundMute)
@@ -102,13 +84,13 @@ public class SoundMuteHandler : MonoBehaviour
         DisableSound();
     }
 
-    private void EnableSound()
+    public void EnableSound()
     {
         AudioListener.pause = false;
         AudioListener.volume = 1;
     }
 
-    private void DisableSound()
+    public void DisableSound()
     {
         AudioListener.pause = true;
         AudioListener.volume = 0;

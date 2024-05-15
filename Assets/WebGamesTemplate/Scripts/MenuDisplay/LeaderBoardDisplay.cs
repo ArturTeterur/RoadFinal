@@ -26,7 +26,7 @@ public class LeaderBoardDisplay : MonoBehaviour
                 _nameAnonimPlayer = "Аноним";
                 break;
             case "en":
-                _nameAnonimPlayer = "Anonimus";
+                _nameAnonimPlayer = "Anonymous";
                 break;
             case "tr":
                 _nameAnonimPlayer = "Bilinmeyen";

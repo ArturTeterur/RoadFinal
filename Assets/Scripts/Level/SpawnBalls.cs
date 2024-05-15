@@ -14,29 +14,38 @@ public class SpawnBalls : MonoBehaviour
     [SerializeField] private PlatformMovement _platformMovement;
     [SerializeField] private bool _ballInWay = false;
     [SerializeField] private float _spawnCount;
+    private bool _startingBallsCreated;
     public float SpawnCount => _spawnCount;
-    private int _currentNumber = 0;
     private int _countBall = 0;
 
-
-    private IEnumerator BallCreation()
+    private IEnumerator BallCreation(float ballCount)
     {
-        while (_spawnCount != _countBall)
+        for (int i = 0; i < ballCount; i++)
         {
             if (!_ballInWay)
             {
                 _countBall++;
-                BallMovement ball = Instantiate(_balls[Random.Range(0, _balls.Count)], _spawnPoint.transform.position, Quaternion.identity);           
+                BallMovement ball = Instantiate(_balls[Random.Range(0, _balls.Count)], _spawnPoint.transform.position, Quaternion.identity);
                 int numberball = _currentNumberBall;
                 ball.GetComponent<BallMovement>().GetNumberBalls(_countBall);
                 yield return new WaitForSeconds(_timeSpawn);
-            }          
+            }
             else
             {
                 yield return null;
             }
         }
-      
+
+        if (_startingBallsCreated == true)
+        {
+            _startingBallsCreated = false;
+        }
+    }
+
+    public void SpawnDroppedBalls(float countBalls)
+    {
+        StartCoroutine(BallCreation(countBalls));
+
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -50,15 +59,13 @@ public class SpawnBalls : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         _ballInWay = false;
-        
     }
 
     public void StartLevel()
     {
+        Time.timeScale = 1;
+        _startingBallsCreated = true;
         _platformMovement.GameStart();
-        if (!_ballInWay)
-        {
-            StartCoroutine(CoroutineName);
-        }
+        StartCoroutine(BallCreation(_spawnCount));
     }
 }
