@@ -81,60 +81,6 @@ public class BallMovement : MonoBehaviour
         }
     }
 
-    private void Move()
-    {
-        if (_currentWaypoints != null && _currentWaypointIndex < _currentWaypoints.Count)
-        {
-            Vector3 moveDerection = (_currentWaypoints[_currentWaypointIndex].position - transform.position).normalized;
-            if (_rigidbody.velocity.magnitude < _maxSpeed)
-            {
-                _rigidbody.AddForce(moveDerection * _speed, ForceMode.Impulse);
-            }
-            if (Vector3.Distance(transform.position, _currentWaypoints[_currentWaypointIndex].position) <= _minimalDistance)
-            {
-                GetIndexWaypoint();
-            }
-        }
-        else
-        {
-            if (_rigidbody.velocity.magnitude < _maxSpeed)
-            {
-                _rigidbody.AddForce(Vector3.forward * _speed * -1, ForceMode.Impulse);
-            }
-        }
-    }
-
-    private int GetIndexWaypoint()
-    {
-        if (_changeDirection)
-        {
-            _currentWaypointIndex--;
-            if (_currentWaypointIndex < 0)
-            {
-                _changeDirection = false;
-                _currentWaypointIndex = 0;
-                return _currentWaypointIndex;
-            }
-            else
-            {
-                return _currentWaypointIndex;
-            }
-        }
-        else
-        {
-            _currentWaypointIndex++;
-            if (_currentWaypointIndex > _currentWaypoints.Count)
-            {
-                _currentWaypointIndex = _currentWaypoints.Count;
-                return _currentWaypointIndex;
-            }
-            else
-            {
-                return _currentWaypointIndex;
-            }
-        }
-    }
-
     public void Destroy()
     {
         Destroy(gameObject);
@@ -192,6 +138,60 @@ public class BallMovement : MonoBehaviour
         else
         {
             _onPlatform = true;
+        }
+    }
+
+    private void Move()
+    {
+        if (_currentWaypoints != null && _currentWaypointIndex < _currentWaypoints.Count)
+        {
+            Vector3 moveDerection = (_currentWaypoints[_currentWaypointIndex].position - transform.position).normalized;
+            if (_rigidbody.velocity.magnitude < _maxSpeed)
+            {
+                _rigidbody.AddForce(moveDerection * _speed, ForceMode.Impulse);
+            }
+            if (Vector3.Distance(transform.position, _currentWaypoints[_currentWaypointIndex].position) <= _minimalDistance)
+            {
+                GetIndexWaypoint();
+            }
+        }
+        else
+        {
+            if (_rigidbody.velocity.magnitude < _maxSpeed)
+            {
+                _rigidbody.AddForce(Vector3.forward * _speed * -1, ForceMode.Impulse);
+            }
+        }
+    }
+
+    private int GetIndexWaypoint()
+    {
+        if (_changeDirection)
+        {
+            _currentWaypointIndex--;
+            if (_currentWaypointIndex < 0)
+            {
+                _changeDirection = false;
+                _currentWaypointIndex = 0;
+                return _currentWaypointIndex;
+            }
+            else
+            {
+                return _currentWaypointIndex;
+            }
+        }
+        else
+        {
+            _currentWaypointIndex++;
+            if (_currentWaypointIndex > _currentWaypoints.Count)
+            {
+                _currentWaypointIndex = _currentWaypoints.Count;
+                return _currentWaypointIndex;
+            }
+            else
+            {
+                return _currentWaypointIndex;
+            }
         }
     }
 }
