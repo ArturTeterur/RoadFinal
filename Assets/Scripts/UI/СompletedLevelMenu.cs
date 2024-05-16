@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelMenu : MonoBehaviour
+public class ÑompletedLevelMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject _CanvasMenu;
-    [SerializeField] private GameObject _CanvasMenuMobile;
-    [SerializeField] private string _nameLevel;
     [SerializeField] private GameObject _firstStar;
     [SerializeField] private GameObject _secondStar;
     [SerializeField] private GameObject _thirdStar;
     [SerializeField] private GameObject _closebutton;
     [SerializeField] private GameObject _nextLevelButton;
+    [SerializeField] private string _nameLevel;
     [SerializeField] private int _menuNumber;
 
     private void Start()

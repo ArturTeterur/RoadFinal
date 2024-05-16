@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum PlatformStartingPosition
@@ -13,14 +11,15 @@ public enum PlatformStartingPosition
 
 public class RotationPlatform : MonoBehaviour
 {
+    private const string WaitForAnimationName = "WaitForAnimation";
+    private const string _amimationZeroDegress = "TurnZeroDegress";
+    private const string _amimationNinetyDegress = "TurnNinetyDegress";
+    private const string _amimationOneHungreedAndEightyDegress = "TurnOneHungreedAndEightyDegress";
+    private const string _animationTwoHundredAndSeventyDegress = "TurnTwoHundredAndSeventyDegress";
     [SerializeField] private GameObject[] _triggers;
-    [SerializeField] private MoveOnPlatformTrigger _platformTrigger;
+    [SerializeField] private CheckingMovementBalls _platformTrigger;
     [SerializeField] private Animator _animator;
     [SerializeField] private PlatformStartingPosition _platformStartingPosition;
-    private const string _amimationZeroDegress = "TurnOne";
-    private const string _amimationNinetyDegress = "TurnTwo";
-    private const string _amimationOneHungreedAndEightyDegress = "TurnThree";
-    private const string _animationTwoHundredAndSeventyDegress = "TurnFour";
     private string _currentAnimationTrigger;
     private bool _isRotating = false;
 
@@ -30,24 +29,26 @@ public class RotationPlatform : MonoBehaviour
         {
             case PlatformStartingPosition._zeroDegress:
                 _currentAnimationTrigger = _amimationZeroDegress;
-                break;
+              break;
             case PlatformStartingPosition._ninetyDegress:
-                _currentAnimationTrigger = _amimationNinetyDegress;
-                break;
+               _currentAnimationTrigger = _amimationNinetyDegress;
+              break;
             case PlatformStartingPosition._oneHungreedAndEightyDegress:
-                _currentAnimationTrigger = _amimationOneHungreedAndEightyDegress;
-                break;
+               _currentAnimationTrigger = _amimationOneHungreedAndEightyDegress;
+              break;
             case PlatformStartingPosition._twoHundredAndSeventyDegress:
-                _currentAnimationTrigger = _animationTwoHundredAndSeventyDegress;
-                break;
+               _currentAnimationTrigger = _animationTwoHundredAndSeventyDegress;
+              break;
         }
     }
 
-    private void RemoveTriggerWhenTurn(bool isRotating)
+    public void Rotate()
     {
-        for (int i = 0; i < _triggers.Length; i++)
+        if (!_isRotating)
         {
-            _triggers[i].SetActive(isRotating);           
+            _animator.SetTrigger(_currentAnimationTrigger);
+            StartCoroutine(WaitForAnimationName);
+            _platformTrigger.EnebelingConecters();
         }
     }
 
@@ -56,17 +57,5 @@ public class RotationPlatform : MonoBehaviour
         yield return new WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && !_animator.IsInTransition(0));
         
         _isRotating = false;
-    }
-
-    public void Rotate()
-    {
-        if (!_isRotating)
-        {
-//RemoveTriggerWhenTurn(false);
-            _animator.SetTrigger(_currentAnimationTrigger);
-            StartCoroutine("WaitForAnimation");
-            _platformTrigger.EnebelingConecters();
-        //    RemoveTriggerWhenTurn(true);
-        }
     }
 }

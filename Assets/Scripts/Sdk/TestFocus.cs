@@ -15,14 +15,22 @@ public class TestFocus : MonoBehaviour
     {
         Application.focusChanged += OnInBackgraundChangeApp;
         WebApplication.InBackgroundChangeEvent += OnInBackgraundChangeWeb;
-        Debug.Log("ON");
     }
 
     private void OnDisable()
     {
         Application.focusChanged -= OnInBackgraundChangeApp;
         WebApplication.InBackgroundChangeEvent -= OnInBackgraundChangeWeb;
-        Debug.Log("Off");
+    }
+
+    public void MuteAudioDuring()
+    {
+        _openAd = true;
+    }
+
+    public void TurnSound()
+    {
+        _openAd = false;
     }
 
     private void OnInBackgraundChangeApp(bool inApp)
@@ -58,15 +66,5 @@ public class TestFocus : MonoBehaviour
         {
             Time.timeScale = value ? 0 : 1;
         }
-    }
-
-    public void MuteAudioDuring()
-    {
-        _openAd = true;
-    }
-
-    public void TurnSound()
-    {
-        _openAd = false;
     }
 }

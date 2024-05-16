@@ -11654,22 +11654,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cfb3c8fb2bdfe4aa2c07ccb5889f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasFinishMobile: {fileID: 594035729}
-  _canvasGameOverMobile: {fileID: 248660137}
+  _ground: {fileID: 2012035841}
+  _canvasGameOver: {fileID: 2124557404}
   _canvasFinish: {fileID: 1582106946}
   _firstStar: {fileID: 1275053248}
   _secondStar: {fileID: 347462256}
   _thirdStar: {fileID: 1124734438}
-  _firstStarMobile: {fileID: 467353912}
-  _secondStarMobile: {fileID: 1622388369}
-  _thirdStarMobile: {fileID: 2062736059}
   _text: {fileID: 424664911}
   _spawn: {fileID: 1537205682}
-  _canvasGameOver: {fileID: 2124557404}
-  _levelName: LevelFifteen
+  _panelFinish: {fileID: 1631886555}
+  _panelGameOver: {fileID: 1011904836}
   _currentAmountBalls: 0
   _currentSpawnCount: 0
   _spawnCount: 0
+  _levelName: LevelFifteen
 --- !u!65 &1501562314
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16264,6 +16262,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957a5967f8425a346b6ddda05b946c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ballFell:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &2018677125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19946,10 +19947,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801b4fec8e7f49f448d5728ea9f6d8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsOnPlatform: []
-  _rotationPlatform: {fileID: 0}
+  _objectsOnPlatform: []
   _connectersPlatform: []
-  _directionMovementAfterTurning: {fileID: 0}
   _straightPlatform: 0
 --- !u!4 &8497148978610746804
 Transform:

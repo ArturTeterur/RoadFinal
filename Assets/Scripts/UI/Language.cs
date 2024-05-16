@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Runtime.InteropServices;
 using TMPro;
 using Agava.YandexGames;
 using Lean.Localization;

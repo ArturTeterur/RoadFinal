@@ -22,22 +22,16 @@ public class Init : MonoBehaviour
     {
         yield return Agava.YandexGames.YandexGamesSdk.Initialize(OnInitialized);
     }
+    public void OnCallGameReadyButtonClick()
+    {
+        SceneManager.LoadScene(_menuSceneNumber);
+    }
 
     private void OnInitialized()
     {
-        if (Device.IsMobile)
-        {
-            PlayerPrefs.SetInt("Mobile", 1);
-        }
         PlayerPrefs.SetString(CurrentLanguage, YandexGamesSdk.Environment.i18n.lang);
         _loadingBar.SetActive(false);
         YandexGamesSdk.GameReady();
         _buttonStart.SetActive(true);
-    }
-
-    public void OnCallGameReadyButtonClick()
-    {
-   //     YandexGamesSdk.GameReady();
-        SceneManager.LoadScene(_menuSceneNumber);
     }
 }

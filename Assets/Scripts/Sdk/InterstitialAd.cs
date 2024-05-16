@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Agava.YandexGames;
 
@@ -16,6 +14,7 @@ public class InterstitialAd : MonoBehaviour
             _soundMuteHandler = GameObject.FindObjectOfType<SoundMuteHandler>();
         }
     }
+
     private void ShowAdv()
     {
         Agava.YandexGames.InterstitialAd.Show(Open, Close);

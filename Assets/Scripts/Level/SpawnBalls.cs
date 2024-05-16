@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SpawnBalls : MonoBehaviour
 {
-    private const string CoroutineName = "BallCreation";
     [SerializeField] private GameObject _spawnPoint;
     [SerializeField] private BallMovement _ballPrefab;
     [SerializeField] private float _timeSpawn;
@@ -14,9 +12,28 @@ public class SpawnBalls : MonoBehaviour
     [SerializeField] private PlatformMovement _platformMovement;
     [SerializeField] private bool _ballInWay = false;
     [SerializeField] private float _spawnCount;
-    private bool _startingBallsCreated;
     public float SpawnCount => _spawnCount;
     private int _countBall = 0;
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ballComponent))
+        {
+            _ballInWay = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        _ballInWay = false;
+    }
+
+    public void StartLevel()
+    {
+        Time.timeScale = 1;
+        _platformMovement.GameStart();
+        StartCoroutine(BallCreation(_spawnCount));
+    }
 
     private IEnumerator BallCreation(float ballCount)
     {
@@ -35,37 +52,5 @@ public class SpawnBalls : MonoBehaviour
                 yield return null;
             }
         }
-
-        if (_startingBallsCreated == true)
-        {
-            _startingBallsCreated = false;
-        }
-    }
-
-    public void SpawnDroppedBalls(float countBalls)
-    {
-        StartCoroutine(BallCreation(countBalls));
-
-    }
-
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ballComponent))
-        {
-            _ballInWay = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        _ballInWay = false;
-    }
-
-    public void StartLevel()
-    {
-        Time.timeScale = 1;
-        _startingBallsCreated = true;
-        _platformMovement.GameStart();
-        StartCoroutine(BallCreation(_spawnCount));
     }
 }

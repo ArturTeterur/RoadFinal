@@ -1,17 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 public class Ground : MonoBehaviour
 {
-    public static event Action BallOutGame;
+   [SerializeField] private UnityEvent _ballFell;
+
+    public event UnityAction BallOutGame
+    {
+        add => _ballFell.AddListener(value);
+        remove => _ballFell.RemoveListener(value);
+    }
+
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ballComponent))
         {
-            BallOutGame();
             ballComponent.Destroy();
+            _ballFell.Invoke();
         }
     }
 }

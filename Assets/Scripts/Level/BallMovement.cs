@@ -34,8 +34,6 @@ public class BallMovement : MonoBehaviour
             if (ball._numberBalls > _numberBalls)
             {
                 GetIndexWaypoint();
-                Debug.Log("LLLLLLLLLLL");
-
             }
         }
     }
@@ -55,9 +53,6 @@ public class BallMovement : MonoBehaviour
                 {
                     KeepMoving();
                     ChangeDerection();
-
-                    
-                    Debug.Log("GGGGGGGG");
                 }
                 
             }
@@ -82,7 +77,6 @@ public class BallMovement : MonoBehaviour
             if (_targetBall == null)
             {
                 Move();
-
             }
         }
     }

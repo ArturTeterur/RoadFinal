@@ -1104,6 +1104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957a5967f8425a346b6ddda05b946c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ballFell:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &313695963 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3358792995028132604, guid: b2b99d1fb8859f7479ff36b27b2a12ff, type: 3}
@@ -1548,6 +1551,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &750159690 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7147569674176301188, guid: 97c4ecf515eb1a84a8d704f32184dee7, type: 3}
+  m_PrefabInstance: {fileID: 7894989496333415717}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &753986005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1861,11 +1869,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5dfab68593de9045a69b6af493aa1e7, type: 3}
---- !u!1 &753986006 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7964015302093979027, guid: c5dfab68593de9045a69b6af493aa1e7, type: 3}
-  m_PrefabInstance: {fileID: 753986005}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &772486949
 GameObject:
   m_ObjectHideFlags: 0
@@ -3423,22 +3426,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cfb3c8fb2bdfe4aa2c07ccb5889f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasFinishMobile: {fileID: 6002151071742269486}
-  _canvasGameOverMobile: {fileID: 753986006}
+  _ground: {fileID: 296855842}
+  _canvasGameOver: {fileID: 2124557404}
   _canvasFinish: {fileID: 1582106946}
   _firstStar: {fileID: 1275053248}
   _secondStar: {fileID: 347462256}
   _thirdStar: {fileID: 1124734438}
-  _firstStarMobile: {fileID: 2305023467400615345}
-  _secondStarMobile: {fileID: 1051410522049895046}
-  _thirdStarMobile: {fileID: 4841174315077077157}
   _text: {fileID: 1335117045}
   _spawn: {fileID: 1537205682}
-  _canvasGameOver: {fileID: 2124557404}
-  _levelName: Education
+  _panelFinish: {fileID: 750159690}
+  _panelGameOver: {fileID: 750159690}
   _currentAmountBalls: 0
   _currentSpawnCount: 0
   _spawnCount: 0
+  _levelName: Education
 --- !u!65 &1501562314
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10765,10 +10766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801b4fec8e7f49f448d5728ea9f6d8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsOnPlatform: []
-  _rotationPlatform: {fileID: 0}
+  _objectsOnPlatform: []
   _connectersPlatform: []
-  _directionMovementAfterTurning: {fileID: 0}
   _straightPlatform: 1
 --- !u!114 &8361144300224870514
 MonoBehaviour:

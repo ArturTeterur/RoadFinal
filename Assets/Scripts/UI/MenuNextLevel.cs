@@ -1,10 +1,5 @@
-using Agava.YandexGames;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class MenuNextLevel : MonoBehaviour
 {
@@ -16,7 +11,6 @@ public class MenuNextLevel : MonoBehaviour
     [SerializeField] private GameObject _education;
     private int _nextLevel;
     private int _menuNumber = 1;
-    private int _currentLevel;
     private int _lastLevel = 21;
     private int _levelAfterLast = 15;
 
@@ -44,12 +38,13 @@ public class MenuNextLevel : MonoBehaviour
         {
             Time.timeScale = 1;
             _educationLevel = false;
+
             if (_education != null)
             {
                 _education.SetActive(false);
             }
-            _spawnBalls.StartLevel();
-            
+
+            _spawnBalls.StartLevel();            
         }
         else
         {
@@ -61,16 +56,19 @@ public class MenuNextLevel : MonoBehaviour
     public void NextLevel()
     {
         _nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+
         if (_nextLevel == _lastLevel)
         {
             _nextLevel = _levelAfterLast;
         }
+
         SceneManager.LoadScene(_nextLevel);
     }
 
     public void Menu(bool winnerMenu)
     {
         SceneManager.LoadScene(_menuNumber);
+
         if (winnerMenu)
         {
             PlayerPrefs.SetInt(CurrentLevel, SceneManager.GetActiveScene().buildIndex + 1);

@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class PlatformMovement : MonoBehaviour
 {
@@ -12,9 +10,11 @@ public class PlatformMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && canClick && Time.time - lastClickTime >= clickDelay || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+        if (Input.GetMouseButtonDown(0) && canClick && Time.time - lastClickTime >= clickDelay 
+            || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             Ray ray;
+
             if (Input.touchCount > 0)
             {
                 ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
@@ -34,16 +34,11 @@ public class PlatformMovement : MonoBehaviour
                     clicktable.Rotate();             
                 }
             }
+
             lastClickTime = Time.time;
             canClick = false;
             StartCoroutine(UnlockButtonClick());
         }
-    }
-
-    IEnumerator UnlockButtonClick()
-    {
-        yield return new WaitForSeconds(clickDelay);
-        canClick = true;
     }
 
     public bool GameStart()
@@ -56,5 +51,10 @@ public class PlatformMovement : MonoBehaviour
     public void AddMoves()
     {      
         Time.timeScale = 1;
+    }
+    private IEnumerator UnlockButtonClick()
+    {
+        yield return new WaitForSeconds(clickDelay);
+        canClick = true;
     }
 }
