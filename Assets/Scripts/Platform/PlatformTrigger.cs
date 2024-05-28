@@ -1,20 +1,24 @@
+using Scripts.Level.Ball;
 using UnityEngine;
 
-public class PlatformTrigger : MonoBehaviour
+namespace Scripts.Platform.PlatformTrigger
 {
-    private void OnTriggerEnter(Collider collider)
+    public class PlatformTrigger : MonoBehaviour
     {
-        if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ball))
+        private void OnTriggerEnter(Collider collider)
         {
-           ball.StopMoving();
+            if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ball))
+            {
+                ball.StopMoving();
+            }
         }
-    }
 
-    private void OnTriggerExit(Collider collider)
-    {
-        if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ball))
+        private void OnTriggerExit(Collider collider)
         {
-           ball.KeepMoving();
+            if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ball))
+            {
+                ball.KeepMoving();
+            }
         }
     }
 }

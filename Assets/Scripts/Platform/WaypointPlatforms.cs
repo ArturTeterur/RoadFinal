@@ -1,25 +1,27 @@
+using Scripts.Level.Ball;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaypointPlatforms : MonoBehaviour
+namespace Scripts.Platform.WaypointsPlatforms
 {
-    [SerializeField] private List<Transform> _waypoints;
-    [SerializeField] private bool _itsStartPlatform;
-    [SerializeField] private GameObject _secondTriggerPlatforms;
-    
-
-    private void OnTriggerEnter(Collider collider)
+    public class WaypointPlatforms : MonoBehaviour
     {
-        if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ballComponent))
+        [SerializeField] private List<Transform> _waypoints;
+        [SerializeField] private GameObject _secondTriggerPlatforms;
+
+        private void OnTriggerEnter(Collider collider)
         {
-            MoveToWaypoint(ballComponent);
-            _secondTriggerPlatforms.SetActive(false);
+            if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ballComponent))
+            {
+                MoveToWaypoint(ballComponent);
+                _secondTriggerPlatforms.SetActive(false);
+            }
         }
-    }
 
-    public void MoveToWaypoint(BallMovement ball)
-    {
-        ball.GetComponent<BallMovement>().KeepMoving();
-        ball.GetComponent<BallMovement>().MoveToWaypoints(_waypoints);
+        public void MoveToWaypoint(BallMovement ball)
+        {
+            ball.GetComponent<BallMovement>().KeepMoving();
+            ball.GetComponent<BallMovement>().MoveToWaypoints(_waypoints);
+        }
     }
 }

@@ -1,23 +1,26 @@
+using Scripts.Level.Ball;
 using UnityEngine;
-using System;
 using UnityEngine.Events;
 
-public class Ground : MonoBehaviour
+namespace Scripts.Level.GroundTrigger
 {
-   [SerializeField] private UnityEvent _ballFell;
-
-    public event UnityAction BallOutGame
+    public class Ground : MonoBehaviour
     {
-        add => _ballFell.AddListener(value);
-        remove => _ballFell.RemoveListener(value);
-    }
+        [SerializeField] private UnityEvent _ballFell;
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ballComponent))
+        public event UnityAction BallOutGame
         {
-            ballComponent.Destroy();
-            _ballFell.Invoke();
+            add => _ballFell.AddListener(value);
+            remove => _ballFell.RemoveListener(value);
+        }
+
+        private void OnTriggerEnter(Collider collider)
+        {
+            if (collider.gameObject.TryGetComponent<BallMovement>(out BallMovement ballComponent))
+            {
+                ballComponent.Destroy();
+                _ballFell.Invoke();
+            }
         }
     }
 }

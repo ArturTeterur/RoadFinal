@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Agava.WebUtility;
+using UnityEngine;
 
-public class LevelsMenuMobile : MonoBehaviour
+namespace Scripts.UI.LevelMenuMobile
 {
-    [SerializeField] private GameObject _CanvasMenu;
-    [SerializeField] private GameObject _CanvasMenuMobile;
-
-    private void Start()
+    public class LevelsMenuMobile : MonoBehaviour
     {
-        if (Device.IsMobile)
+        [SerializeField] private GameObject _CanvasMenu;
+        [SerializeField] private GameObject _CanvasMenuMobile;
+
+        private void Start()
         {
-            _CanvasMenuMobile.SetActive(true);
-        }
-        else
-        {
-            _CanvasMenu.SetActive(true);
+            if (Device.IsMobile)
+            {
+                _CanvasMenuMobile.SetActive(true);
+            }
+            else
+            {
+                _CanvasMenu.SetActive(true);
+            }
         }
     }
 }

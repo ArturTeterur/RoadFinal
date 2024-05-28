@@ -1,60 +1,61 @@
+using Scripts.Platform.Rotation;
 using System.Collections;
 using UnityEngine;
 
-public class PlatformMovement : MonoBehaviour
+namespace Scripts.Platform.PlatformMovement
 {
-    [SerializeField] private bool _gameHasBegun = false;
-    private float lastClickTime = 0f;
-    private float clickDelay = 0.5f;
-    private bool canClick = true;
-
-    private void Update()
+    public class PlatformMovement : MonoBehaviour
     {
-        if (Input.GetMouseButtonDown(0) && canClick && Time.time - lastClickTime >= clickDelay 
-            || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+        [SerializeField] private bool _gameHasBegun = false;
+
+        private float _lastClickTime = 0f;
+        private float _clickDelay = 0.5f;
+        private bool _canClick = true;
+
+        private void Update()
         {
-            Ray ray;
-
-            if (Input.touchCount > 0)
+            if (Input.GetMouseButtonDown(0) && _canClick && Time.time - _lastClickTime >= _clickDelay
+                || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
             {
-                ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            }
-            else
-            {
-                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            }
+                Ray ray;
 
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray,out hit) && _gameHasBegun == true)
-            {
-                if (hit.transform.GetComponent<RotationPlatform>())
-                {             
-                    RotationPlatform clicktable = hit.transform.GetComponent<RotationPlatform>();
-                    clicktable.Rotate();             
+                if (Input.touchCount > 0)
+                {
+                    ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
                 }
+                else
+                {
+                    ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                }
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit) && _gameHasBegun == true)
+                {
+                    if (hit.transform.GetComponent<RotationPlatform>())
+                    {
+                        RotationPlatform clicktable = hit.transform.GetComponent<RotationPlatform>();
+                        clicktable.Rotate();
+                    }
+                }
+
+                _lastClickTime = Time.time;
+                _canClick = false;
+                StartCoroutine(UnlockButtonClick());
             }
-
-            lastClickTime = Time.time;
-            canClick = false;
-            StartCoroutine(UnlockButtonClick());
         }
-    }
 
-    public bool GameStart()
-    {
-        _gameHasBegun = true;
+        public bool GameStart()
+        {
+            _gameHasBegun = true;
 
-        return _gameHasBegun;
-    }
+            return _gameHasBegun;
+        }
 
-    public void AddMoves()
-    {      
-        Time.timeScale = 1;
-    }
-    private IEnumerator UnlockButtonClick()
-    {
-        yield return new WaitForSeconds(clickDelay);
-        canClick = true;
+        private IEnumerator UnlockButtonClick()
+        {
+            yield return new WaitForSeconds(_clickDelay);
+            _canClick = true;
+        }
     }
 }

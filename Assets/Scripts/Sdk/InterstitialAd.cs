@@ -1,39 +1,41 @@
 using UnityEngine;
-using Agava.YandexGames;
 
-public class InterstitialAd : MonoBehaviour
+namespace Scripts.Sdk.InterstitialAds
 {
-    [SerializeField] private SoundMuteHandler _soundMuteHandler;
-    [SerializeField] private GameObject _testFocus;
-
-    private void Start()
+    public class InterstitialAd : MonoBehaviour
     {
-        ShowAdv();
-        if(_soundMuteHandler = null)
+        [SerializeField] private SoundMuteHandler _soundMuteHandler;
+        [SerializeField] private GameObject _testFocus;
+
+        private void Start()
         {
-            _soundMuteHandler = GameObject.FindObjectOfType<SoundMuteHandler>();
+            ShowAdv();
+            if (_soundMuteHandler = null)
+            {
+                _soundMuteHandler = GameObject.FindObjectOfType<SoundMuteHandler>();
+            }
         }
-    }
 
-    private void ShowAdv()
-    {
-        Agava.YandexGames.InterstitialAd.Show(Open, Close);
-    }
-
-    private void Close(bool close)
-    {
-        if (close)
+        private void ShowAdv()
         {
-            Time.timeScale = 1;
-            _soundMuteHandler.OnVideoClosed();
-            _testFocus.SetActive(true);
+            Agava.YandexGames.InterstitialAd.Show(Open, Close);
         }
-    }
 
-    private void Open()
-    {
-        Time.timeScale = 0;
-        _soundMuteHandler.OnVideoOpened();
-        _testFocus.SetActive(false);
+        private void Close(bool close)
+        {
+            if (close)
+            {
+                Time.timeScale = 1;
+                _soundMuteHandler.OnVideoClosed();
+                _testFocus.SetActive(true);
+            }
+        }
+
+        private void Open()
+        {
+            Time.timeScale = 0;
+            _soundMuteHandler.OnVideoOpened();
+            _testFocus.SetActive(false);
+        }
     }
 }

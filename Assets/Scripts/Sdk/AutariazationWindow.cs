@@ -1,17 +1,20 @@
-using UnityEngine;
 using Agava.YandexGames;
+using UnityEngine;
 
-public class AutarizationWindow : MonoBehaviour
+namespace Scripts.Sdk.AutarizationWindow
 {
-    [SerializeField] private GameObject _autorizationWindow;
-
-    public void CloseWindowAutorization()
+    public class AutarizationWindow : MonoBehaviour
     {
-        _autorizationWindow.gameObject.SetActive(false);
-    }
+        [SerializeField] private GameObject _autorizationWindow;
 
-    public void Autorization()
-    {
-        PlayerAccount.Authorize();
+        public void CloseWindowAutorization()
+        {
+            _autorizationWindow.gameObject.SetActive(false);
+        }
+
+        public void Autorization()
+        {
+            PlayerAccount.Authorize();
+        }
     }
 }

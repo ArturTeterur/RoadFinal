@@ -1,47 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ÑompletedLevelMenu : MonoBehaviour
+namespace Scripts.UI.ComplectedLevelMenu
 {
-    [SerializeField] private GameObject _firstStar;
-    [SerializeField] private GameObject _secondStar;
-    [SerializeField] private GameObject _thirdStar;
-    [SerializeField] private GameObject _closebutton;
-    [SerializeField] private GameObject _nextLevelButton;
-    [SerializeField] private string _nameLevel;
-    [SerializeField] private int _menuNumber;
-
-    private void Start()
+    public class ÑompletedLevelMenu : MonoBehaviour
     {
-        if(PlayerPrefs.HasKey(_nameLevel))
+        [SerializeField] private GameObject _firstStar;
+        [SerializeField] private GameObject _secondStar;
+        [SerializeField] private GameObject _thirdStar;
+        [SerializeField] private GameObject _closebutton;
+        [SerializeField] private GameObject _nextLevelButton;
+        [SerializeField] private string _nameLevel;
+        [SerializeField] private int _menuNumber;
+
+        private void Start()
         {
-            switch (PlayerPrefs.GetInt(_nameLevel))
+            if (PlayerPrefs.HasKey(_nameLevel))
             {
-                case 1:
-                    if (_nextLevelButton != null)
-                    {
-                        _nextLevelButton.SetActive(false);
-                    }
-                    _firstStar.SetActive(true);
-                    break;
-                case 2:
-                    _firstStar.SetActive(true);
-                    _secondStar.SetActive(true);
-                    break;
-                case 3:
-                    _firstStar.SetActive(true);
-                    _secondStar.SetActive(true);
-                    _thirdStar.SetActive(true);
-                    break;
+                switch (PlayerPrefs.GetInt(_nameLevel))
+                {
+                    case 1:
+                        if (_nextLevelButton != null)
+                        {
+                            _nextLevelButton.SetActive(false);
+                        }
+
+                        _firstStar.SetActive(true);
+                        break;
+                    case 2:
+                        _firstStar.SetActive(true);
+                        _secondStar.SetActive(true);
+                        break;
+                    case 3:
+                        _firstStar.SetActive(true);
+                        _secondStar.SetActive(true);
+                        _thirdStar.SetActive(true);
+                        break;
+                }
+
+                _closebutton.SetActive(false);
             }
-            _closebutton.SetActive(false);
+        }
+
+        public void GoLevel(int numberScene)
+        {
+            SceneManager.LoadScene(numberScene);
         }
     }
-
-    public void GoLevel(int numberScene)
-    {
-        SceneManager.LoadScene(numberScene);
-    }  
 }

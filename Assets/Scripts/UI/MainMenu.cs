@@ -1,33 +1,38 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+namespace Scripts.UI.MainMenu
 {
-    private const string CurrentLevel = "_currentLevel";
-    [SerializeField] private int _numberIndexLevelSelection;
-    private int _nextLevel;
-
-    private void Start()
+    public class MainMenu : MonoBehaviour
     {
-        Time.timeScale = 0.0f;
-    }
+        private const string CurrentLevel = "_currentLevel";
 
-    public void MainMenuLevel()
-    {
-        if (PlayerPrefs.HasKey(CurrentLevel))
+        [SerializeField] private int _numberIndexLevelSelection;
+
+        private int _nextLevel;
+
+        private void Start()
         {
-            int level = PlayerPrefs.GetInt(CurrentLevel);
-            SceneManager.LoadScene(level);
+            Time.timeScale = 0.0f;
         }
-        else
-        {
-            _nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-            SceneManager.LoadScene(_nextLevel);
-        }
-    }
 
-    public void GoLevelSelection()
-    {
-        SceneManager.LoadScene(_numberIndexLevelSelection);
+        public void MainMenuLevel()
+        {
+            if (PlayerPrefs.HasKey(CurrentLevel))
+            {
+                int level = PlayerPrefs.GetInt(CurrentLevel);
+                SceneManager.LoadScene(level);
+            }
+            else
+            {
+                _nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+                SceneManager.LoadScene(_nextLevel);
+            }
+        }
+
+        public void GoLevelSelection()
+        {
+            SceneManager.LoadScene(_numberIndexLevelSelection);
+        }
     }
 }
