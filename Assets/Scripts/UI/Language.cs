@@ -1,5 +1,5 @@
-using UnityEngine;
 using Lean.Localization;
+using UnityEngine;
 
 namespace Scripts.UI.Language
 {

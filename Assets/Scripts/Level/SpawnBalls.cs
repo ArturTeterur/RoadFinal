@@ -1,7 +1,7 @@
-using Scripts.Level.Ball;
-using Scripts.Platform.PlatformMovement;
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Level.Ball;
+using Scripts.Platform.PlatformMovement;
 using UnityEngine;
 
 namespace Scripts.Level.Spawn
@@ -17,6 +17,7 @@ namespace Scripts.Level.Spawn
         [SerializeField] private bool _ballInWay = false;
         [SerializeField] private int _countBall = 0;
         [SerializeField] private float _spawnCount;
+
         public float SpawnCount => _spawnCount;
 
         private void OnTriggerEnter(Collider collider)

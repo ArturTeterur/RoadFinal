@@ -1,9 +1,9 @@
-using Agava.YandexGames;
 using Agava.WebUtility;
+using Agava.YandexGames;
 using Scripts.Level.GroundTrigger;
 using Scripts.Level.Spawn;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 namespace Scripts.Level.Finish
 {
@@ -144,7 +144,6 @@ namespace Scripts.Level.Finish
                 case < 30f:
                     _canvasGameOver.SetActive(true);
                     break;
-
             }
 
             Time.timeScale = 0f;

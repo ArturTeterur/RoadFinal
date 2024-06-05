@@ -9,7 +9,7 @@ namespace Scripts.Platform.StartingPosition
             ZeroDegress,
             NinetyDegress,
             OneHungreedAndEightyDegress,
-            TwoHundredAndSeventyDegress
+            TwoHundredAndSeventyDegress,
         }
     }
 }

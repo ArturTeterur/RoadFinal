@@ -1,6 +1,5 @@
 using Scripts.Platform.CheckingMovementsBalls;
 using Scripts.Platform.StartingPosition;
-using System.Collections;
 using UnityEngine;
 
 namespace Scripts.Platform.Rotation

@@ -1,5 +1,5 @@
-using Scripts.Platform.Rotation;
 using System.Collections;
+using Scripts.Platform.Rotation;
 using UnityEngine;
 
 namespace Scripts.Platform.PlatformMovement
@@ -14,8 +14,8 @@ namespace Scripts.Platform.PlatformMovement
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && _canClick && Time.time - _lastClickTime >= _clickDelay
-                || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+            if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) ||
+            ((Input.GetMouseButtonDown(0) && _canClick) && Time.time - _lastClickTime >= _clickDelay))
             {
                 Ray ray;
 

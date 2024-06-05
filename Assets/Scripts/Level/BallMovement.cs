@@ -1,5 +1,5 @@
-using Scripts.Level.Finish;
 using System.Collections.Generic;
+using Scripts.Level.Finish;
 using UnityEngine;
 
 namespace Scripts.Level.Ball

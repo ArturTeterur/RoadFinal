@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Scripts.Sdk.AutarizationWindow
 {
-    public class AutarizationWindow : MonoBehaviour
+    public class AuthorizationWindow: MonoBehaviour
     {
         [SerializeField] private GameObject _autorizationWindow;
 
