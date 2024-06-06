@@ -11,6 +11,7 @@ namespace Scripts.Level.Finish
     {
         private const string LeaderboardName = "LeaderBoard";
         private const string SaveNumberStars = "_currentStars";
+
         [SerializeField] private Ground _ground;
         [SerializeField] private GameObject _canvasGameOver;
         [SerializeField] private GameObject _canvasFinish;
@@ -25,6 +26,7 @@ namespace Scripts.Level.Finish
         [SerializeField] private float _currentSpawnCount;
         [SerializeField] private float _spawnCount;
         [SerializeField] private string _levelName;
+
         private int _totalNumberStars = 0;
         private float _currentPercent;
         private float _widthPanelMobile = 442.547f;
